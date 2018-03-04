@@ -1,0 +1,33 @@
+ <view class="steps-rank-container">
+    <view class="steps-rank-title">
+      <text>排行榜</text>
+    </view>
+    <view class="steps-rank-list">
+      <view class="steps-rank-item" wx:for="{{steps_rank_list}}">
+        <view class="item-left">
+            <view class="item-user-avatar"><image src="{{user_avatar}}"></image></view>
+            <view class="item-user-text">
+              <view class="item-user-name">
+                <text>{{item.name}}</text>
+              </view>
+              <view class="item-user-rank">
+                <text>第{{index + 1}}名</text>
+              </view>
+          </view>
+        </view>
+        <view class="item-right">
+          <view class="item-steps">
+            <text>{{item.steps}}</text>
+          </view>
+          <view class="item-likes">
+            <view class="item-likes-count">
+              <text>{{item.likes}}</text>
+            </view>
+            <view class="item-likes-heart item-likes-heart-liked">
+              <text>心</text>
+            </view>
+          </view>
+        </view>
+      </view>
+    </view>
+  </view>

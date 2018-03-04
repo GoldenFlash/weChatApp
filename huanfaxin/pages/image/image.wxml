@@ -1,0 +1,21 @@
+<view>
+  <scroll-view scroll-y style="height: 80vh;">
+      <canvas  class="img" data-url='{{url}}'  style='font-size:{{fontSize}}px;{{isShow != true ? "width:0px;height:0px;border:0 solid rgb(25, 173, 25);":""}};' canvas-id="demo">
+      </canvas>
+      <image class="previewImg" wx:if="{{isShow != true}}" bindtap='previewImage' data-url='{{url}}' src='{{url}}'></image>
+  </scroll-view>
+  <view class='control'>
+    <view>「保存图片」到相册后就可以设置为壁纸了✌️</view>
+    <view class='step'>
+      <view class='step-1'>
+        <view bindtap="showIndex">再来一个</view>
+      </view>
+      <view class='step-2'>
+        <view><button bindtap='saveImgToPhotosAlbumTap'>保存图片</button></view>
+      </view>
+      <view class='step-3'>
+        <button open-type="share" bindtap='tapShare' >分享</button>
+      </view>
+    </view>
+  </view>
+</view>
