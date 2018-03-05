@@ -163,12 +163,14 @@ Page(Object.assign({}, Zan.Toast, {
         console.log('分享到微信');
         this._showSharebutton();
   },
-  // shareToMoments: function() {
-  //     console.log('分享到朋友圈');
-  //     this.generateInvitation(function(pic) {
-  //         util.downloadAndPreview(pic, '我的婚礼邀请函', 'path', '正在跳转');
-  //     });
-  // },
+  shareToMoments: function () {
+    console.log('分享到朋友圈');
+    this.saveResult();
+    this._showSharebutton();
+    
+    
+  },
+ 
    
   showDetail: function(e){
     wx.redirectTo({
@@ -338,20 +340,10 @@ Page(Object.assign({}, Zan.Toast, {
       })
     },2000);
   },
-  shareToMoments: function () {
-    
-    console.log('分享到朋友圈');
-    // var picfunc = function(pic){
-    //   console.log(1)
-    //   util.downloadAndPreview(pic, '测试结果', 'path', '海报图片下载中')
-    // };
-
-    this.saveResult();
-    
-  },
+ 
   saveResult: function (successCB) {
     wx.showToast({
-      title: '正在保存',
+      title: 'loading',
       duration:20000,
       icon: 'loading'
     });
@@ -484,41 +476,45 @@ Page(Object.assign({}, Zan.Toast, {
           wx.getSetting({
             success: (result) => {
               console.log('result',result);
-              if (result.authSetting['scope.writePhotosAlbum']==false) {
-                wx.openSetting({
-                  success: () => {
-                    wx.saveImageToPhotosAlbum({
-                      filePath: res.tempFilePath,
-                      success: function () {
-                        wx.hideToast();
-                        wx.showToast({
-                          title: '测试结果海报已经保存到你的相册啦',
-                          duration:1000,
-                          icon: 'success'
-                        });
-                      },
-                      fail: function () {
-                        wx.hideToast();
-                      }
-                    })
-                  }
-                })
-              } else {
-                wx.saveImageToPhotosAlbum({
-                  filePath: res.tempFilePath,
-                  success: function () {
-                    wx.hideToast();
-                    wx.showToast({
-                      title: '测试结果海报已经保存到你的相册啦',
-                      duration:1000,
-                      icon: 'success'
-                    });
-                  },
-                  fail: function () {
-                    wx.hideToast();
-                  }
-                })
-              }
+              wx.hideToast();
+              wx.navigateTo({
+                 url: '/pages/preview/preview?pic='+encodeURIComponent(res.tempFilePath)+'&title=loading'+'&path='+encodeURIComponent("path")
+              })
+              // if (result.authSetting['scope.writePhotosAlbum']==false) {
+              //   wx.openSetting({
+              //     success: () => {
+              //       wx.saveImageToPhotosAlbum({
+              //         filePath: res.tempFilePath,
+              //         success: function () {
+              //           wx.hideToast();
+              //           wx.showToast({
+              //             title: '测试结果海报已经保存到你的相册啦',
+              //             duration:1000,
+              //             icon: 'success'
+              //           });
+              //         },
+              //         fail: function () {
+              //           wx.hideToast();
+              //         }
+              //       })
+              //     }
+              //   })
+              // } else {
+              //   wx.saveImageToPhotosAlbum({
+              //     filePath: res.tempFilePath,
+              //     success: function () {
+              //       wx.hideToast();
+              //       wx.showToast({
+              //         title: '测试结果海报已经保存到你的相册啦',
+              //         duration:1000,
+              //         icon: 'success'
+              //       });
+              //     },
+              //     fail: function () {
+              //       wx.hideToast();
+              //     }
+              //   })
+              // }
             }
           })
         }

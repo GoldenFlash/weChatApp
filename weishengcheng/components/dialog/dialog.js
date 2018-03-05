@@ -48,7 +48,7 @@ Component({
         },
         shareToMoments: function() {
 
-            this.triggerEvent("saveResult")
+            this.triggerEvent("shareToMoments")
         },
 
         toggleShowDialog() {

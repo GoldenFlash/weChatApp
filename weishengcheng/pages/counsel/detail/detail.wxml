@@ -111,7 +111,7 @@
             content='' 
               
             bind:shareToChats="shareToChats"
-            bind:saveResult ="saveResult" 
+            bind:shareToMoments ="shareToMoments" 
             bind:showSharebutton="_showSharebutton"
             bind:toggleSharePopup="toggleSharePopup">
           </dialog>
