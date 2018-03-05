@@ -63,6 +63,13 @@
 	background-color: #fff;
 	color:#000000;
 }
+.share-wrapper{
+	margin:20rpx;
+	display: flex;
+	width:85%;
+	margin:0 auto;
+	
+}
 .shareButton {
   margin-left: 0;
   margin-right: 0;
@@ -75,19 +82,12 @@
 .shareButton::after {
   border: none;
 }
-.share-wrapper{
-	margin:20rpx;
-	display: flex;
-	width:85%;
-	margin:0 auto;
-	
-}
 .share-item {
 	text-align: center;
 	flex:1;
-    /*display: inline-block;*/
-    margin: 30rpx 30rpx;
-    width: 140rpx;
+  /*display: inline-block;*/
+  margin: 30rpx 30rpx;
+  width: 140rpx;
 }
 
 .share-item-avatar>image {
@@ -97,7 +97,7 @@
 }
 
 .share-item-name {
-    margin-top: 10rpx;
+    margin-top: ;
     text-align: center;
     color:#646464;
     font-size: 32rpx

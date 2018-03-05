@@ -5,7 +5,7 @@
     		<text>{{content}}</text>
     	</view>
         <view class="share-wrapper">
-            <button class="share-item shareButton" bindtap="shareToChats" open-type="share">
+            <button class="share-item shareButton" open-type="share">
                 <view class="share-item-avatar">
                     <image src="http://icons.maiyizhi.cn/weixin_icon.png"></image>
                 </view>

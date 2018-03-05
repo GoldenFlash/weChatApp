@@ -39,8 +39,8 @@ Page({
         //获得dialog组件
         this.dialog = this.selectComponent("#dialog");
     },
-    _showDialog() {
-      console.log(2)
+    _showSharebutton() {
+      // console.log(2)
         this.setData({
           showSharebutton:!this.data.showSharebutton
         });
@@ -179,7 +179,7 @@ Page({
             that.toggleDialog()
         }, function() {}, '必须授权登录之后才能操作呢，是否重新授权登录？')
     },
-    onReady: function() {},
+    // onReady: function() {},
     toggleSharePopup: function() {
         this.setData({
             showSharePopup: !this.data.showSharePopup
@@ -200,12 +200,16 @@ Page({
     },
     shareToChats: function() {
         console.log('分享到微信');
+       this._showSharebutton();
+
     },
     shareToMoments: function() {
         console.log('分享到朋友圈');
+       
         this.generateInvitation(function(pic) {
             util.downloadAndPreview(pic, '我的婚礼邀请函', 'path', '正在跳转');
         });
+        // this._showSharebutton();
     },
     // 生成小程序码，回调函数参数为生成的图片的地址
     generateInvitation: function(successCB) {

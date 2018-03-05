@@ -45,12 +45,10 @@ Component({
         shareToChats: function() {
 
             this.triggerEvent("shareToChats")
-            
         },
         shareToMoments: function() {
 
-            this.triggerEvent("shareToMoments")
-           
+            this.triggerEvent("saveResult")
         },
 
         toggleShowDialog() {
