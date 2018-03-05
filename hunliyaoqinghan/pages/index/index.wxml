@@ -4,7 +4,7 @@
     <image lazyload="true" bindtap="preview" mode="aspectFit" src="../../styles/xiexiegewei.jpg" style="width:100%;"></image>
   </view>
   <image src="{{bg}}" style="width:80px;height:80px;" class="myimg" />
-  <view style="border: 1px #876e5a solid;">
+  <view style="">
     <view style="background-color:#876e5a;color:white;text-align:center;padding:6px">
       有
       <text id="allread">{{len}}</text>人偷偷的关(xi)心(huan)
@@ -57,7 +57,7 @@
 <view class="share-wrapper" wx:if="{{showSharebutton}}" >
   <view class="container">
     <dialog id='dialog'  
-      content='content' 
+      content='转发给朋友，看看谁关心你'
       bind:shareToMoments="shareToMoments"  
       bind:shareToChats="shareToChats" 
       bind:showSharebutton="_showSharebutton"

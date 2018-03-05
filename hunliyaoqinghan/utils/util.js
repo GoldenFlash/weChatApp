@@ -604,14 +604,14 @@ function downloadAndPreview (url,title,path,tips) {
         wx.hideNavigationBarLoading();
         console.log(res.tempFilePath)
         //previewSingalPic(res.tempFilePath)
-        wx.redirectTo({
+        wx.navigateTo({
           url: '/pages/preview/preview?pic='+encodeURIComponent(res.tempFilePath)+'&title='+title+'&path='+encodeURIComponent(path)
         })
       }
     })
   }else{
     //previewSingalPic(url)
-    wx.redirectTo({
+    wx.navigateTo({
       url: '/pages/preview/preview?pic='+encodeURIComponent(url)+'&title='+title+'&path='+encodeURIComponent(path)
     })
   }

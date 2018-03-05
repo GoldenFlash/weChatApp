@@ -28,13 +28,13 @@
 }*/
 
 .zan-popup__container {
-	position:fixed;
+	 position:fixed;
     /*display: flex;*/
     /*flex-direction:column;*/
 
     bottom:0;
     width: 100%;
-    height:500rpx;
+    height:450rpx;
     background-color: rgb(241,241,241);
 
 
@@ -64,6 +64,7 @@
 	color:#000000;
 }
 .share-wrapper{
+  transform:translateY(60rpx);
 	margin:20rpx;
 	display: flex;
 	width:85%;

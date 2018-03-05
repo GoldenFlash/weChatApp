@@ -207,14 +207,14 @@ Page({
         console.log('分享到朋友圈');
        
         this.generateInvitation(function(pic) {
-            util.downloadAndPreview(pic, '我的婚礼邀请函', 'path', '正在跳转');
+            util.downloadAndPreview(pic, '我的婚礼邀请函', 'path', '海报图片下载中');
         });
-        // this._showSharebutton();
+        this._showSharebutton();
     },
     // 生成小程序码，回调函数参数为生成的图片的地址
     generateInvitation: function(successCB) {
         wx.showToast({
-            title: '正在生成邀请函',
+            title: 'loading',
             duration: 20000,
             icon: 'loading'
         });

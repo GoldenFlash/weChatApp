@@ -40,6 +40,15 @@
   font-size: 24rpx;
   color: #acacac;
 }
+.share-wrapper{
+  position:fixed;
+  bottom: 0;
+  top:0;
+  left:0;
+  right:0;
+  z-index: 10001;
+  width:100%;
+}
 
 /* .more {
   padding: 0 5px;

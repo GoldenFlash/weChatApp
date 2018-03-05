@@ -161,13 +161,14 @@ Page(Object.assign({}, Zan.Toast, {
   },
   shareToChats: function() {
         console.log('分享到微信');
+        this._showSharebutton();
   },
-  shareToMoments: function() {
-      console.log('分享到朋友圈');
-      this.generateInvitation(function(pic) {
-          util.downloadAndPreview(pic, '我的婚礼邀请函', 'path', '正在跳转');
-      });
-  },
+  // shareToMoments: function() {
+  //     console.log('分享到朋友圈');
+  //     this.generateInvitation(function(pic) {
+  //         util.downloadAndPreview(pic, '我的婚礼邀请函', 'path', '正在跳转');
+  //     });
+  // },
    
   showDetail: function(e){
     wx.redirectTo({
@@ -337,8 +338,18 @@ Page(Object.assign({}, Zan.Toast, {
       })
     },2000);
   },
+  shareToMoments: function () {
+    
+    console.log('分享到朋友圈');
+    // var picfunc = function(pic){
+    //   console.log(1)
+    //   util.downloadAndPreview(pic, '测试结果', 'path', '海报图片下载中')
+    // };
 
-  saveResult: function () {
+    this.saveResult();
+    
+  },
+  saveResult: function (successCB) {
     wx.showToast({
       title: '正在保存',
       duration:20000,
@@ -454,8 +465,20 @@ Page(Object.assign({}, Zan.Toast, {
         }
       })
       console.log("pic_url",pic_url);
+      // wx.hideToast();
+      // successCB(pic_url);
       wx.downloadFile({
         url: util.replaceQiniuHttps(pic_url),
+        // success: function(res) {
+        //   console.log(21323)
+        //   wx.hideToast()
+        //   wx.hideNavigationBarLoading();
+        //   console.log(res.tempFilePath)
+        //     //previewSingalPic(res.tempFilePath)
+        //   wx.navigateTo({
+        //     url: '/pages/preview/preview?pic='+encodeURIComponent(res.tempFilePath)+'&title='+title+'&path='+encodeURIComponent(path)
+        //   })
+        // }
         success: function (res) {
           console.log("res",res);
           wx.getSetting({

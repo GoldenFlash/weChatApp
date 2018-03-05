@@ -90,7 +90,7 @@
       <view style="line-height: 70rpx;font-size: 36rpx;font-weight: bold;">测试结果：{{result.result1}}</view>
       <view style="padding-bottom: 30rpx;color: #999999;font-size: 30rpx;">{{result.result2}}</view>
       <view class="flex_col_center space_between" style="height: 100rpx;border-top: 1px solid #f2f2f2;">
-        <button class="flex_center shareButton" style="width: 100%;height: 70rpx; text-align: center" catchtap="_showSharebutton">
+        <button class="flex_center shareButton" style="width: 100%;height: 70rpx; text-align: center" catchtap="_showSharebutton" type="primary">
           <view>分享给好友</view>
         </button>
         <!-- <button class="flex_center shareButton" style="width: 100%;height: 70rpx; text-align: center" open-type="share">
@@ -102,7 +102,10 @@
           <view>保存结果</view>
         </view> -->
       </view>
-      <view class="share-wrapper" wx:if="{{showSharebutton}}" >
+      
+    </view>
+  </view>
+  <view class="share-wrapper" wx:if="{{showSharebutton}}" >
         <view class="container">
           <dialog id='dialog'  
             content='' 
@@ -114,9 +117,6 @@
           </dialog>
         </view>
       </view>
-    </view>
-  </view>
-
   <template is="Lists" data="{{list:list}}"></template>
   <!-- <template is="more" data="{{list:list}}"></template> -->
 </view>
