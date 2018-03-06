@@ -1,0 +1,39 @@
+<import src="/zanui/toast/index.wxml" />
+<view>
+    <view wx:if="{{!isShow}}" class="page-wrapper">
+        <view class="page" style="background-color: {{color}};">
+            <image src='{{imageUrl}}'>
+            </image>
+        </view>
+        <view class="flower-text">
+            <text style="color: {{color}};">{{imageName}}</text>
+            <text>{{imageContent}}</text>
+        </view>
+        <view class="flowe-btn">
+            <button class="zan-btn zan-btn--large" style="background-color: {{color}};" bindtap="uploadOriginalImage">上传图片</button>
+        </view>
+    </view>
+    <view wx:else style="background-color: {{color}};" class="flower-wrapper">
+      <!-- style="background-image: url('{{url}}');" -->
+        <image class="flower-show" src="{{url}}" mode="aspectFill"></image>
+        <scroll-view class="flower-box" scroll-y>
+            <view class="title">
+                <text>{{item.name}}</text>  
+            </view>
+
+            <view class="wrapper">
+                <image class="image" src='{{item.img}}'></image>
+                <text class="text">{{item.desc}}</text>
+            </view>
+            <view class="meitu">
+                <image wx:for="{{item.imgs}}" src="{{item.smallImg}}"></image>
+            </view>
+        </scroll-view>
+              <!-- <view class="flower-img">
+                        <image src="{{url}}"></image>
+                    </view> -->
+              <!-- <image class="flower-show-img" src="http://otmo7ob2i.bkt.clouddn.com/show.png"></image> -->
+        <button class="cancel"   open-type="share">邀请朋友来玩</button>
+    </view>
+</view>
+<template is="zan-toast" data="{{ zanToast }}"></template>

@@ -207,7 +207,7 @@ Page({
         console.log('分享到朋友圈');
        
         this.generateInvitation(function(pic) {
-            util.downloadAndPreview(pic, '我的婚礼邀请函', 'path', '海报图片下载中');
+            util.downloadAndPreview(pic, '我的婚礼邀请函', '/pages/index/index', '海报图片下载中');
         });
         this._showSharebutton();
     },
