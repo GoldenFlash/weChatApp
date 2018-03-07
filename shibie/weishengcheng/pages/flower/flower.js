@@ -16,13 +16,20 @@ Page(Object.assign({}, Zan.Toast,{
     rate:'',
     name:'',
     color:'#5dc981',
-    item:"",
+    originData:"",
+    data:"",
+    flowerBoxTop:"700rpx",
+    buttonName:"全部图片",
+    imgNumber:5,
+    scrollTop:-70,
   },
+ 
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+
     console.log("options",options)
     var that = this
     if (options.cart == 1) {
@@ -88,15 +95,20 @@ Page(Object.assign({}, Zan.Toast,{
           console.log("res",res);
           wx.hideNavigationBarLoading();
           wx.hideToast();
-          var item = res.detail[0]
-          console.log(item)
-        
+          var data = res.detail
+
+          // var newData = data;
+          // newData.forEach((item)=>{
+          //   var imgs = item.imgs.slice(0,6);
+          //   item.imgs = imgs;
+          // })
           that.setData(
             {
-              item:item
-              
+              data:data,
+              // data:newData 
             }
           )
+
         },function (res) {
           wx.hideNavigationBarLoading();
           wx.hideToast();
@@ -137,14 +149,17 @@ Page(Object.assign({}, Zan.Toast,{
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-  
+    // console.log(123123)
+    wx.redirectTo({
+      url:"/pages/flower/flower",
+    })
   },
 
   /**
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-  
+    
   },
 
   /**
@@ -192,5 +207,32 @@ Page(Object.assign({}, Zan.Toast,{
         isShow: false
       }
     )
+  },
+
+currentChange(detail){
+  console.log("detil",detail)
+  this.setData({
+    scrollTop:-70,
+    imgNumber:5,
+    buttonName:"全部图片"
+  })
+ },
+
+toggleImage(){
+  
+  if(this.data.buttonName==="收起图片"){
+    this.setData({
+      imgNumber:5,
+      buttonName:"全部图片"
+    })
+   
+  }else if(this.data.buttonName==="全部图片"){
+    this.setData({
+      imgNumber:20,
+       buttonName:"收起图片"
+    })
   }
+ 
+}
+
 }))

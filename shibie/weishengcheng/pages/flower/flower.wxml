@@ -14,26 +14,43 @@
         </view>
     </view>
     <view wx:else style="background-color: {{color}};" class="flower-wrapper">
-      <!-- style="background-image: url('{{url}}');" -->
+        <!-- style="background-image: url('{{url}}');" -->
         <image class="flower-show" src="{{url}}" mode="aspectFill"></image>
-        <scroll-view class="flower-box" scroll-y>
-            <view class="title">
-                <text>{{item.name}}</text>  
-            </view>
-
-            <view class="wrapper">
-                <image class="image" src='{{item.img}}'></image>
-                <text class="text">{{item.desc}}</text>
-            </view>
-            <view class="meitu">
-                <image wx:for="{{item.imgs}}" src="{{item.smallImg}}"></image>
-            </view>
-        </scroll-view>
-              <!-- <view class="flower-img">
+        <!-- <swiper class="flower-wrapper"> -->
+        <!-- <view wx:if="{{data}}"> -->
+        <swiper class="flowerbox-wrapper" bindchange="currentChange">
+            <swiper-item wx:for="{{data}}" style="width:100px;height:100%;" class="swiperItem">
+                <scroll-view scroll-y scroll-x="false" style="height:100% ;" scroll-top="{{scrollTop}}">
+                    <view style="overflow-y:visible;" style="top:{{flowerBoxTop}}">
+                        <view class="flower-box">
+                            <view class="title">
+                                <text>{{item.name}}</text>
+                            </view>
+                            <view class="wrapper">
+                                <image class="image" src='{{item.img}}'></image>
+                                <text class="text">{{item.desc}}</text>
+                            </view>
+                            <view class="meitu-wrapper">
+                                <view class="title">美图</view>
+                                <view class="image">
+                                    <image wx:for="{{item.imgs}}" src="{{item.smallImg}}" hidden="{{index > imgNumber}}"></image>
+                                </view>
+                                <view class="btn" style="font-size: 16px" catchtap="toggleImage">
+                                    <text>{{buttonName}}</text>
+                                </view>
+                            </view>
+                        </view>
+                    </view>
+                </scroll-view>
+            </swiper-item>
+        </swiper>
+        <!-- </view> -->
+        <!-- </swiper> -->
+        <!-- <view class="flower-img">
                         <image src="{{url}}"></image>
                     </view> -->
-              <!-- <image class="flower-show-img" src="http://otmo7ob2i.bkt.clouddn.com/show.png"></image> -->
-        <button class="cancel"   open-type="share">邀请朋友来玩</button>
+        <!-- <image class="flower-show-img" src="http://otmo7ob2i.bkt.clouddn.com/show.png"></image> -->
+        <button class="cancel" open-type="share">邀请朋友来玩</button>
     </view>
 </view>
 <template is="zan-toast" data="{{ zanToast }}"></template>

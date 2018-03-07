@@ -79,58 +79,119 @@
 .flower-wrapper{
   width: 750rpx;
   height:100%;
+  position:relative;
 }
 .flower-show {
   background-position: top;
-  position: relative;
+  position: fixed;
   left:0;
   right:0;
   bottom:0;
   top:0;
   width:100%;
-  height: 90vh;
+  height: 100vh;
   /*filter: blur(4px);*/
 }
+.flowerbox-wrapper{
+  position:absolute;
+  left:0;
+  right:0;
+  top:0;
+  bottom: 0;
+  height:100vh;
+  width:750rpx;
+  /*border:solid red 1px;*/
+}
+.flowerbox-wrapper .swiperItem{
+  width:92% !important;
+  left:2.5%;
+  padding-left:1.5%;
+  /*border:solid red 1px;*/
+}
 .flower-box {
+  position: absolute;
   box-sizing: border-box;
   border-radius: 20rpx 20rpx 0 0 ;
-  position: absolute;
-  top:50%;
-  /*left:50%;
-  transform: translateX(-50%);*/
-  width: 750rpx;
-  /*height:500rpx;*/
-  /*left: 5%;*/
-
-  /*display: flex;*/
-  /*flex-direction: row;*/
+  top:700rpx;
+  width: 100%;
   padding-top: 10rpx;
-  padding-left: 20rpx;
+  
+  padding-bottom:200rpx;
   background-color: rgb(255, 254, 251);
   color: rgba(255, 255, 255, 0.8);
   color:#41423D;
-  overflow: hidden;
+  /*overflow: hidden;*/
+
   
 }
 
 .flower-box .title{
+  padding-left: 20rpx;
   height:40rpx;
+}
+.flower-box .wrapper{
+  padding-left: 20rpx;
 }
 .flower-box .wrapper .image{
   margin:20rpx 0;
   margin-right:20rpx; 
   float:left;
   width:200rpx;
-  height:150rpx;
+  height:170rpx;
   border-radius: 10rpx;
 }
 .flower-box .wrapper .text{
   font-size: 30rpx;
-  line-height: 5rpx;
+  /*color:red;*/
+  line-height:-100px;
 }
-.flower-box .meitu >image{
-    width:200rpx;
-    height:160rpx;
+.flower-box .meitu-wrapper{
+  /*width:720rpx;*/
+  /*margin:0 auto; */
+  margin-top: 20rpx;
+  margin-left:45rpx;
+  margin-right:45rpx;
+}
+.flower-box .meitu-wrapper .title{
+  text-align: left;
+  width:90rpx;
+  margin:20rpx auto;
+  font-size: 36rpx;
+  color:#8F8F8F;
+}
+/*.flower-box .meitu-wrapper .title::before{
+  width:100rpx;
+  height:2px;
+  display:inline-block;
+  border-top: solid 1px #DADBD6;
+}
+.flower-box .meitu-wrapper .title::after{
+  width:100rpx;
+  height:2px;
+  display:inline-block;
+  border-top: solid 1px #DADBD6;
+}*/
+.flower-box .meitu-wrapper .image{
+   margin:0 auto;
+}
+.flower-box .meitu-wrapper .image > image{
+    width:180rpx;
+    height:150rpx;
+    margin:0 10rpx;
+}
+.flower-box .meitu-wrapper .btn{
+  margin:0 auto;
+  text-align: center;
+  width:160rpx;
+  height:50rpx;
+  border:solid 1px #e3e3e3;
+  border-radius: 10rpx;
+  line-height: 50rpx;
+}
+.flower-box .meitu-wrapper .btn >text{
+   font-size: 14px;
+   line-height: 50rpx;
+   color:#434343;
 }
 /*.flower-box > view:nth-child(1) {*/
   /*flex: 1;*/
@@ -183,15 +244,22 @@
 }
 */
 .cancel {
+
   width: 100%;
-  height: 50px;
+  height: 40px;
   position: fixed;
   bottom: 0;
+  left:50%;
+  transform: translateX(-50%);
   /*border:none;*/
   background-color:#5fc883;
   /*bottom: 5%;*/
   /*left: calc(50% - 25px);*/
   border-radius: 0;
+  color:#FFF;
+  /*background-color: transparent;*/
+  font-size: 16px;
+  line-height: 40px;
 }
 .cancel::after{
     border: none;
