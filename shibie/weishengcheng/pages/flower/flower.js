@@ -2,6 +2,7 @@
 var api = require('../../api.js');
 var Zan = require('../../zanui/index');
 var isPet = 0;
+var app = getApp();
 Page(Object.assign({}, Zan.Toast,{
 
   /**
@@ -22,6 +23,8 @@ Page(Object.assign({}, Zan.Toast,{
     buttonName:"全部图片",
     imgNumber:5,
     scrollTop:-70,
+    
+    
   },
  
 
@@ -54,10 +57,10 @@ Page(Object.assign({}, Zan.Toast,{
       this.setData(
         {
           isShow:true,
-          url:options.src,
+          // url:options.src,
+          url:getApp().globalData.localImgUrl
         }
       )
-      //console.log(options)
       wx.showNavigationBarLoading();
       wx.showToast({
         title: '处理中……',
@@ -96,12 +99,6 @@ Page(Object.assign({}, Zan.Toast,{
           wx.hideNavigationBarLoading();
           wx.hideToast();
           var data = res.detail
-
-          // var newData = data;
-          // newData.forEach((item)=>{
-          //   var imgs = item.imgs.slice(0,6);
-          //   item.imgs = imgs;
-          // })
           that.setData(
             {
               data:data,
@@ -114,6 +111,9 @@ Page(Object.assign({}, Zan.Toast,{
           wx.hideToast();
           that.showZanToast(res);
           setTimeout(function () {
+            wx.navigateBack({
+              delta:100,
+            })
             that.setData({
               isShow:false
             })
@@ -149,10 +149,14 @@ Page(Object.assign({}, Zan.Toast,{
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    // console.log(123123)
-    wx.redirectTo({
-      url:"/pages/flower/flower",
-    })
+    if(this.data.isShow==true){
+      wx.navigateBack({
+        delta:100,
+      })
+      // wx.redirectTo({
+      //   url:"/pages/flower/flower",
+      // }) 
+    }
   },
 
   /**
@@ -185,8 +189,10 @@ Page(Object.assign({}, Zan.Toast,{
       sourceType: ['album', 'camera'],
       count:1,
       success: function (res) {
-        console.log(res.tempFilePaths[0])
-        that.afterAvatarChoose(res.tempFilePaths[0])
+        console.log("res.tempFilePaths[0]",res.tempFilePaths[0])
+        that.afterAvatarChoose(res.tempFilePaths[0]),
+        getApp().globalData.localImgUrl = res.tempFilePaths[0]; 
+        
       }
     })
   },
@@ -209,13 +215,16 @@ Page(Object.assign({}, Zan.Toast,{
     )
   },
 
-currentChange(detail){
-  console.log("detil",detail)
+currentChange(event){
+  console.log(detail)
+  var detail = event.detail;
+  var dataLength = this.data.data.length;
+  var current =this.data.currentIndex;
   this.setData({
-    scrollTop:-70,
-    imgNumber:5,
-    buttonName:"全部图片"
-  })
+      scrollTop:-70,
+      imgNumber:5,
+      buttonName:"全部图片",
+  });
  },
 
 toggleImage(){

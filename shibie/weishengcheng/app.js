@@ -23,6 +23,7 @@ App({
     globalData:{
         user:null,
         previews:{},
-        system_info:null
+        system_info:null,
+        localImgUrl:"",
     }
 })

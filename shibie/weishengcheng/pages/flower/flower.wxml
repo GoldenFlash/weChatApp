@@ -14,11 +14,11 @@
         </view>
     </view>
     <view wx:else style="background-color: {{color}};" class="flower-wrapper">
-        <!-- style="background-image: url('{{url}}');" -->
+        
         <image class="flower-show" src="{{url}}" mode="aspectFill"></image>
-        <!-- <swiper class="flower-wrapper"> -->
+        
         <!-- <view wx:if="{{data}}"> -->
-        <swiper class="flowerbox-wrapper" bindchange="currentChange">
+        <swiper class="flowerbox-wrapper" bindchange="currentChange"  circular >
             <swiper-item wx:for="{{data}}" style="width:100px;height:100%;" class="swiperItem">
                 <scroll-view scroll-y scroll-x="false" style="height:100% ;" scroll-top="{{scrollTop}}">
                     <view style="overflow-y:visible;" style="top:{{flowerBoxTop}}">
@@ -44,12 +44,7 @@
                 </scroll-view>
             </swiper-item>
         </swiper>
-        <!-- </view> -->
-        <!-- </swiper> -->
-        <!-- <view class="flower-img">
-                        <image src="{{url}}"></image>
-                    </view> -->
-        <!-- <image class="flower-show-img" src="http://otmo7ob2i.bkt.clouddn.com/show.png"></image> -->
+       
         <button class="cancel" open-type="share">邀请朋友来玩</button>
     </view>
 </view>

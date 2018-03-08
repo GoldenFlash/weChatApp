@@ -104,8 +104,11 @@
 }
 .flowerbox-wrapper .swiperItem{
   width:92% !important;
+  /*margin:0 auto !important;*/
+  /*transform:none !important; */
   left:2.5%;
   padding-left:1.5%;
+  /*right:2%;*/
   /*border:solid red 1px;*/
 }
 .flower-box {
@@ -180,7 +183,7 @@
     margin:0 10rpx;
 }
 .flower-box .meitu-wrapper .btn{
-  margin:0 auto;
+  margin:20rpx auto;
   text-align: center;
   width:160rpx;
   height:50rpx;
