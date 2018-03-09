@@ -1,0 +1,81 @@
+/**index.wxss**/
+
+
+.userinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height:250rpx;
+}
+
+.userinfo-avatar {
+  width: 128rpx;
+  height: 128rpx;
+  margin: 20rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  /* color: #aaa; */
+}
+.works{
+  margin-top:10rpx;
+  margin-bottom:20rpx;
+  font-size:26rpx;
+}
+.works-wrapper{
+height:100vh;
+width:100%;
+/* border:solid red 1px; */
+background-color: #F1F1F1;
+}
+.work-item{
+  height:200rpx;
+  
+  /* border:solid blue 1px; */
+  padding:0 30rpx;
+  margin:20rpx 0;
+  background-color: #FFFFFF;
+}
+.work-item .main{
+  display:flex;
+   border-bottom:solid #F1F1F1 1px; 
+  height:120rpx;
+  align-items:center;
+  
+}
+.work-item .main .workInfor{
+  /* vertical-align:bottom; */
+}
+.works-wrapper .work-item .icon{
+  height:90rpx;
+  width:80rpx;
+  line-height: 120rpx;
+  /* vertical-align:bottom; */
+}
+.works-wrapper .work-item .icon>image{
+  height:50rpx;
+  width:50rpx;
+  /* line-height: 120rpx; */
+}
+.works-wrapper .work-item .remarks{
+  font-size:26rpx;
+}
+.works-wrapper .work-item .addition{
+  height:30rpx;
+  /* border:solid yellow 1px; */
+  line-height: 20rpx
+  
+}
+.container .add{
+    position:fixed;
+    bottom:20rpx;
+    width:300rpx;
+    height:200rpx;
+    /* border:solid red 1px; */
+    text-align: center;
+}
+.container .add .zan-icon-add{
+    font-size:150rpx;
+    color:red;
+}

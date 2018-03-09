@@ -1,0 +1,55 @@
+/* pages/produce/produce.wxss */
+.producePage{
+	background-color: #F1F1F1;
+	height: 100vh;
+	width:100%;
+}
+.producePage .form{
+	padding-top: 15rpx;
+	/*overflow: hidden;*/
+}
+.form >view{
+	background-color: #fff;
+
+}
+/*.form view:nth-child(1){
+	margin-top: 20rpx;
+}*/
+.form >view:nth-child(2){
+	margin-top: 40rpx;
+}
+.producePage .tap{
+	position:absolute;
+	height:450rpx;
+	width:100%;
+	bottom:0;
+	background-color: #fff;
+}
+.producePage .tap >view:nth-child(1){
+	text-align: center;
+	margin-top: 30rpx;
+}
+.producePage .tap .startTape{
+	text-align: center;
+	margin-top: 30rpx;
+	font-size: 40rpx;
+	color:red;
+	
+}
+.producePage .tap .startTape image{
+	height:200rpx;
+	width:200rpx;
+}
+.producePage .tap .release{
+	display: flex;
+	/*border:solid red 1px;*/
+	margin-top: 50rpx;
+	height:80rpx;
+}
+.producePage .tap .release >view{
+	flex:1;
+	text-align: center;
+	border:solid #EBEBEB 1px;
+	border-bottom: none;
+	line-height: 80rpx;
+}

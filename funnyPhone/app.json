@@ -1,0 +1,16 @@
+{
+  "pages": [
+   
+    "pages/index/index",
+    "pages/logs/logs",
+    "pages/produce/produce",
+    "pages/result/result",
+    "pages/detail/detail"
+  ],
+  "window": {
+    "backgroundTextStyle": "light",
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "funnyPhone",
+    "navigationBarTextStyle": "black"
+  }
+}

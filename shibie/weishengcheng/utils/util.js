@@ -723,7 +723,7 @@ function dealFormIds(formId) {
 }
 
 function randdomDomain(){
-  var domains=['lvjing','zhuang','datoutie'];
+  var domains=['lvjing','zhuang','datoutie','data','ai'];
   return domains[Math.floor(Math.random()*domains.length)];
 }
 

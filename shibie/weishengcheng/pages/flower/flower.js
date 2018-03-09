@@ -1,6 +1,8 @@
 // pages/flower/flower.js
 var api = require('../../api.js');
 var Zan = require('../../zanui/index');
+var bgData = require('../../utils/data.js')
+var homePageData = require('../../utils/HomeData.js')
 var isPet = 0;
 var app = getApp();
 Page(Object.assign({}, Zan.Toast,{
@@ -9,9 +11,7 @@ Page(Object.assign({}, Zan.Toast,{
    * 页面的初始数据
    */
   data: {
-    imageName:'花草识别',
-    imageContent:'地球上的花草植物我都认得了，发我一张试试吧',
-    imageUrl:'http://pics.maiyizhi.cn/tupianshibie_flower.png',
+    homePageData:[],
     isShow: false,
     url: '',
     rate:'',
@@ -23,6 +23,7 @@ Page(Object.assign({}, Zan.Toast,{
     buttonName:"全部图片",
     imgNumber:5,
     scrollTop:-70,
+    background:[]
     
     
   },
@@ -34,7 +35,13 @@ Page(Object.assign({}, Zan.Toast,{
   onLoad: function (options) {
 
     console.log("options",options)
+console.log(homePageData)
     var that = this
+
+    that.setData({
+      background:bgData.data,
+      homePageData:homePageData.data,
+    })
     if (options.cart == 1) {
       isPet = 1;
       wx.setNavigationBarTitle({

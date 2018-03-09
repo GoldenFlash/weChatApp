@@ -1,0 +1,26 @@
+<import src="../../zanui-weapp/dist/field/index.wxml" />
+<view class="producePage">
+    <view class="form">
+        <view>
+            <template is="zan-field" data="{{ title: '来电名称', type: 'input', placeholder: '名字', value:'sliderwater' }}"></template>
+            <template is="zan-field" data="{{ title: '备注说明', type: 'input', placeholder: '名字', value:'移动' }}"></template>
+        </view>
+        <view>
+            <template is="zan-field" data="{{ title: '更多说明', type: 'input', placeholder: '随便填点试试', value }}"></template>
+        </view>
+    </view>
+    <view class="tap">
+    	<view>{{tapeMessage}}</view>
+    	<view class="startTape"  wx:if="{{!startTape}}">
+    		<image src="../../svg/keyboard-voice(1).svg" catchtap="startTape"></image>
+    	</view>
+		<view class="startTape"  wx:else="{{startTape}}">
+    		<image src="../../svg/stop(2).svg" wx:if="{{onTape}}" catchtap="onTape"></image>
+    		<image src="../../svg/play(2).svg" wx:else="{{!onTape}}"  catchtap="onTape"></image>
+	    	<view class="release" wx:if="{{!onTape}}">
+	    		<view>取消</view>
+	    		<view>发布</view>
+	    	</view>
+    	</view>
+    </view>
+</view>
