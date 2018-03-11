@@ -2,11 +2,12 @@
 .producePage{
 	background-color: #F1F1F1;
 	height: 100vh;
-	width:100%;
+	width:750rpx;
 }
 .producePage .form{
 	padding-top: 15rpx;
-	/*overflow: hidden;*/
+	overflow: hidden;
+	width:750rpx;
 }
 .form >view{
 	background-color: #fff;
