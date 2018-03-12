@@ -1,0 +1,21 @@
+<view class="container">
+	<!-- <view class="image-wrapper"> -->
+		<image src="{{userInfo.avatarUrl}}" mode="aspectFill" style="height:100vh;width:100%;"></image>
+	<!-- </view> -->
+	<view class="video">
+		<view class="image-wrapper">
+			<image src="{{userInfo.avatarUrl}}"></image>
+			<view>{{userInfo.nickName}}</view>
+		</view>
+		<view class="icon">
+			<view>
+				<image src="../../svg/uncall.svg"></image>
+				<view>拒绝</view>
+			</view>
+			<view>
+				<image src="../../svg/call.svg"></image>
+				<view>接听</view>
+			</view>
+		</view>
+	</view>
+</view>

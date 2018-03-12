@@ -9,7 +9,10 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     // currentIndex:100000,
+    commentFocus:false,
     tapePlay:false,
+
+    liked:false,
     work:{ callName: "slidewater", remarks: "备注", moreInfo: "more",length:"0:00" },   
   },
   //事件处理函数
@@ -49,6 +52,7 @@ Page({
     //   })
     // }
   },
+  stop(){},
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -73,6 +77,21 @@ Page({
     wx.navigateTo({
       url: '/pages/detail/detail',
     })
+
+  },
+  liked(){
+    var that = this;
+    this.setData({
+      liked:!that.data.liked
+    })
+  },
+  writeComment(){
+    var that = this;
+    that.setData({
+      commentFocus:!that.data.commentFocus
+    })
+  },
+  share(){
 
   }
 })

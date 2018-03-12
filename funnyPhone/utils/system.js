@@ -6,7 +6,8 @@ var wc = require('./wcache.js')
 function myRequest(url, data, successCB, failCB,key,time) {
   var app = getApp()
     data["version"] = config.config.version;
-    data["platform"] = app.globalData.system_info.platform?app.globalData.system_info.platform:'';
+    // data["platform"] = app.globalData.system_info.platform?app.globalData.system_info.platform:'';
+    data["platform"] ='';
     data["app"] = config.config.app_name;
     data["unionid"]=(app.globalData.user&&app.globalData.user.unionid)?app.globalData.user.unionid:'';
     if(!data["user_id"]){

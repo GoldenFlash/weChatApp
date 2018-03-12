@@ -55,14 +55,18 @@ background-color: #F1F1F1;
   color:#A6A6A6;
   font-size: 24rpx
 }
+
 .work-item .main .share{
   box-sizing:border-box;
   height:120rpx;
   width:90rpx;
   padding:20rpx;
-  /*line-height: 30rpx;*/
-  /*border:solid red 1px;*/
+  background: transparent;
+  line-height: 30rpx
 
+}
+.work-item .main .share:after{
+  border:none;
 }
 .work-item .main .share >image{
   height:50rpx;

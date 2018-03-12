@@ -18,8 +18,8 @@
     		<image src="../../svg/stop(2).svg" wx:if="{{onTape}}" catchtap="onTape"></image>
     		<image src="../../svg/play(2).svg" wx:else="{{!onTape}}"  catchtap="onTape"></image>
 	    	<view class="release" wx:if="{{!onTape}}">
-	    		<view>取消</view>
-	    		<view>发布</view>
+	    		<view catchtap="goPreview">预览</view>
+	    		<view catchtap="goResult">分享</view>
 	    	</view>
     	</view>
     </view>

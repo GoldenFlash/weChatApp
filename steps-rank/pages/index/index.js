@@ -1,8 +1,8 @@
 //index.js
 //获取应用实例
 const app = getApp()
-var WXBizDataCrypt = require('../../node/WXBizDataCrypt.js')
-
+// var WXBizDataCrypt = require('../../node/WXBizDataCrypt.js')
+const api = require("../../api.js")
 Page({
     data: {
         motto: 'Hello World',
@@ -21,6 +21,12 @@ Page({
     },
     onLoad: function() {
         this.inituserInfo();
+
+        api.login(function(res){
+            console.log("resres")
+            console.log(res)
+        })
+
         this.initSelfStep();
         this.getShareTicked();
         
@@ -67,20 +73,21 @@ Page({
         var _getWeRunData = function() {
             wx.getWeRunData({
                 success(res) {
-                    console.log("---------")
-                    console.log(res.encryptedData)
-                    console.log(res.errMsg)
-                    console.log(res.iv)
-                    console.log("-------")
+                    // console.log("---------")
+                    // console.log(res.encryptedData)
+                    // console.log(res.errMsg)
+                    // console.log(res.iv)
+                    // console.log("-------")
 
                     var appId = "wx896b0398c56fa7e3";
                     var sessionKey = app.globalData.sessionKey;
                     var iv = res.iv;
                     var encryptedData = res.encryptedData;
-
+                    // wx.requst({
+                    //     url:"https://ai.maiyizhi.cn/producter/php/frontend/web/index.php?r=steps/default/index"
+                    // })
                     
-                    var pc = new WXBizDataCrypt(appId, sessionKey);
-                    var data = pc.decryptData(encryptedData , iv);
+                   
                     
                 }
             })
@@ -107,7 +114,7 @@ Page({
 
     },
     getUserInfo: function(e) {
-        console.log(e)
+        // console.log(e)
         app.globalData.userInfo = e.detail.userInfo
         this.setData({
             userInfo: e.detail.userInfo,
@@ -119,8 +126,8 @@ Page({
             path: "pages/rankingList/rankingList",
             success(res){
 
-                console.log("res.shareTickets[0]")
-                console.log(res.shareTickets[0])
+                // console.log("res.shareTickets[0]")
+                // console.log(res.shareTickets[0])
             }
         }
     }

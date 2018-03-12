@@ -8,7 +8,17 @@
 		<!-- <text class="works">作品数量</text> -->
 		<!-- </block> -->
 	</view>
-	<view class="button"></view>
+	<view class="button">
+		<view class="wrapper">
+			<view class="liked" catchtap="liked">
+				<image src="../../svg/heart(1).svg" wx:if="{{!liked}}"></image>
+				<image src="../../svg/heart.svg" wx:else></image>
+			</view>
+			<view class="weixin">
+				<image src="../../svg/weixin.svg"></image>
+			</view>
+		</view>
+	</view>
 	<view class="works-wrapper">
 		<view class='work-item'>
 			<view class="main">
@@ -21,10 +31,10 @@
 					<view class="remarks">{{work.remarks}}</view>
 				</view>
 				<view class="time">0:00</view>
-				<view class="share">
+				<button class="share" catchtap="share" open-type="share">
 					<image src='../../svg/share.svg'></image>
 					<text>分享</text>
-				</view>
+				</button>
 			</view>
 			<view class="zan-cell zan-cell--access addition">
 				<view class="zan-cell__bd related">
@@ -33,6 +43,26 @@
 					<view>0条评论</view>
 				</view>
 				<view class="zan-cell__ft"></view>
+			</view>
+		</view>
+	</view>
+	<view class="comment">
+		<view class="line">
+			<text></text>
+			<text>评论</text>
+			<text></text>
+		</view>
+		<view class="writeComment" catchtap="writeComment">
+			<text>写评论</text>
+			<input type="text" focus="{{commentFocus}}"/>
+		</view>
+		<view class="content">
+			<view class="avatar">
+				<image src="{{userInfo.avatarUrl}}"></image>
+			</view>
+			<view>
+				<view class="userName">{{userInfo.nickName}}</view>
+				<view class="text">评论内容</view>
 			</view>
 		</view>
 	</view>

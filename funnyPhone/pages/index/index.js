@@ -63,6 +63,7 @@ Page({
     //   })
     // }
   },
+  stop(){},
   getUserInfo: function(e) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
@@ -95,6 +96,5 @@ Page({
     wx.navigateTo({
       url: '/pages/detail/detail',
     })
-
   }
 })

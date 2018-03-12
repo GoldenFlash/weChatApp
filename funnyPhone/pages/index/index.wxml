@@ -20,10 +20,10 @@
               <view class="remarks">{{item.remarks}}</view>
           </view>
           <view class="time">0:00</view>
-          <view class="share">
+          <button class="share" open-type="share" catchtap="stop">
               <image src='../../svg/share.svg'></image>
               <text>分享</text>
-          </view>
+          </button>
      </view>
      <view class="zan-cell zan-cell--access addition">
         <view class="zan-cell__bd related" >

@@ -1,0 +1,48 @@
+/* pages/preview/preview.wxss */
+.container{
+	width:100%;
+	height:100%;
+	position: relative;
+}
+/*.container .image-wrapper {
+	position:absolute;
+	left:0;
+	bottom:0;
+	right:0;
+	bottom:0;
+	width:100%;
+	height:100vh;
+}*/
+.container .video{
+	position:absolute;
+	width:100%;
+	height:100vh;
+	background-color:rgba(0,0,0,.9); 
+}
+.container .video .image-wrapper image{
+	height:250rpx;
+	width:250rpx;
+	border-radius: 20rpx;
+}
+.container .video .image-wrapper{
+	margin:200rpx 0;
+	text-align: center;
+}
+.container .video .image-wrapper >view{
+	font-size: 56rpx;
+	color:#FFF;
+	margin-top: 20rpx;
+}
+.container .video .icon{
+	display:flex;
+	text-align: center;
+	align-items: center;
+	justify-content: center;
+	margin-top: 400rpx;
+	color:#FFF;
+}
+.container .video .icon image{
+	height:150rpx;
+	width:150rpx;
+	margin: 0 100rpx;
+}

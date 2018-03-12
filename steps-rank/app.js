@@ -10,12 +10,12 @@ App({
   onLaunch: function (opts) {
     var that = this;
     if(opts.scene == 1044){
-      console.log(opts.shareTicket)
+      // console.log(opts.shareTicket)
        wx.getShareInfo({
         shareTicket: opts.shareTicket,
           complete(res){
-            console.log("getTicket")
-            console.log(res)
+            // console.log("getTicket")
+            // console.log(res)
           }
       })
     }
@@ -26,33 +26,46 @@ App({
     wx.setStorageSync('logs', logs)
 
     // 登录
-    wx.login({
-      success: res => {
-        // 发送 res.code 到后台换取 openId, sessionKey, unionId
-        var code = res.code;
-        console.log("code")
-        console.log(res)
-         wx.request({
-           
-          url:"https://api.weixin.qq.com/sns/jscode2session",
 
-           data:{
-             js_code:code, //用于拿到sessionKey
-             appid: "wx896b0398c56fa7e3",
-             secret:"a756088fee969b15df75c7179442cebf",
-             grant_type:"authorization_code"
-           },
-          header:{
-             'Content-Type': 'application/json'
-          },
-          success:function(res){
-             console.log("session_key");
-             console.log(res);
-             that.globalData.sessionKey = res.sessionKey;
-           }
-         })
-      }
-    })
+    // wx.login({
+    //   success: res => {
+    //     var code = res.code;
+    //     console.log("code")
+    //     console.log(res)
+        
+    //     var rawData,signature,encryptedData,iv;
+    //     wx.getUserInfo({
+    //       success(res){
+    //         console.log(res)
+    //         rawData = encodeURIComponent(res.rawData);
+    //         signature = res.signature || '';
+    //         encryptedData = res.encryptedData;
+    //         iv = res.iv;
+    //       }
+    //     })
+
+    //      wx.request({
+           
+    //       url:"https://api.maiyizhi.cn/index.php?r=api/weixinzhushou/login",
+
+    //        data:{
+    //           jscode: code,
+    //           rawData:rawData,
+    //           signature,signature,
+    //           encryptedData:encryptedData,
+    //           iv:iv
+    //        },
+    //       header:{
+    //          'Content-Type': 'application/json'
+    //       },
+    //       success:function(res){
+    //          console.log("session_key");
+    //          console.log(res);
+             
+    //        }
+    //      })
+    //   }
+    // })
   
     // 获取用户信息
     wx.getSetting({
