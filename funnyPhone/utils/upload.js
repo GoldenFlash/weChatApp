@@ -45,7 +45,7 @@ function uploadVideo(video, successCB, failCB) {
 function _uploadVideo(video, successCB, failCB) {
     var extand = getExtand(video.tempFilePath);
     // 获取七牛上传token
-    api.getQiniuVideoTokenApi(function (token) {
+    api.getQiniuTokenApi('video',function (token) {
         if (token) {
             // 上传视频
             var flie = video.tempFilePath.split('//')[1];

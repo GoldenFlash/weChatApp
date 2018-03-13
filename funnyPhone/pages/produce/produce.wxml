@@ -1,12 +1,18 @@
 <import src="../../zanui-weapp/dist/field/index.wxml" />
-<view class="producePage">
+<view class="producePage" catchtap="cancel">
     <view class="form">
-        <view>
-            <template is="zan-field" data="{{ title: '来电名称', type: 'input', placeholder: '名字', value:'sliderwater' }}"></template>
-            <template is="zan-field" data="{{ title: '备注说明', type: 'input', placeholder: '名字', value:'移动' }}"></template>
+        <view class="zan-cell zan-cell--access" catchtap="chooseImage">
+            <view class="zan-cell__bd image">
+                <text style="font-size: 36rpx;">更换头像</text>
+                <image src="{{workInfo.image}}" style="width:100rpx;height:100rpx"></image>
+            </view>
+            <view class="zan-cell__ft"></view>
         </view>
-        <view>
-            <template is="zan-field" data="{{ title: '更多说明', type: 'input', placeholder: '随便填点试试', value }}"></template>
+        <view class="zan-cell zan-cell--access">
+            <view class="zan-cell__bd name">
+                <text style="font-size: 36rpx;">姓名</text>
+                <view style="font-size: 36rpx">{{workInfo.name}}</view>
+            </view>
         </view>
     </view>
     <view class="tap">
@@ -18,8 +24,8 @@
     		<image src="../../svg/stop(2).svg" wx:if="{{onTape}}" catchtap="onTape"></image>
     		<image src="../../svg/play(2).svg" wx:else="{{!onTape}}"  catchtap="onTape"></image>
 	    	<view class="release" wx:if="{{!onTape}}">
-	    		<view catchtap="goPreview">预览</view>
-	    		<view catchtap="goResult">分享</view>
+	    		<button catchtap="goPreview">预览</button>
+	    		<button open-type="share">分享</button>
 	    	</view>
     	</view>
     </view>

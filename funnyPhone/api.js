@@ -119,12 +119,10 @@ function getStaticApi(key,successCB) {
 }
 
 /* 获取七牛token */
-function getQiniuVideoTokenApi(successCB) {
-  system.myRequest('https://api.maiyizhi.cn/index.php?r=api/upload/gettoken',{bucket: 'video'},successCB);
+function getQiniuTokenApi(bucket,successCB) {
+  system.myRequest('https://api.maiyizhi.cn/index.php?r=api/upload/gettoken',{bucket: bucket},successCB);
 }
-function getQiniuImageTokenApi(successCB) {
-  system.myRequest('https://api.maiyizhi.cn/index.php?r=api/upload/gettoken',{bucket: 'pics'},successCB);
-}
+
 
 function getUrl(url,successCB,failCB){
   system.myRequest('https://api.maiyizhi.cn/index.php?r=api/weixinzhushou/geturl',
@@ -447,8 +445,7 @@ module.exports = {
   woshishui:woshishui,
   getUrl:getUrl,
   tousu:tousu,
-  getQiniuImageTokenApi: getQiniuImageTokenApi,
-  getQiniuVideoTokenApi: getQiniuVideoTokenApi,
+  getQiniuTokenApi: getQiniuTokenApi,
   random:random,
   sendPayTemplate:sendPayTemplate,
   getPayParamsApi:getPayParamsApi,
