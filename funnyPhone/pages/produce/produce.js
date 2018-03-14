@@ -42,6 +42,9 @@ Page(extend({}, Field, {
     workInfo:{},
     tempFilePath:'',
     weixin:"",
+    limitTime:"",
+    time:"0:00"
+
   },
 
  // onLoad: function (options) {
@@ -60,6 +63,7 @@ Page(extend({}, Field, {
             image:image,
             name:name
           }
+         wx.setStorageSync("weixin", workInfo);
           this.setData({
             userInfo: res.userInfo,
             hasUserInfo: true,
@@ -75,38 +79,49 @@ Page(extend({}, Field, {
       if(weixin){
         console.log("weixin")
         console.log(weixin)
-        var image = weixin.qunliao.users[0].avatar
-        var name = weixin.qunliao.users[0].name
+        var image = weixin.image;
+        var name = weixin.name;
         var workInfo ={"image":image,"name":name};
         that.setData({
             workInfo:workInfo
         })
       }
-    console.log("options")
-    console.log(options)
+    // console.log("options")
+    // console.log(options)
   },
 
 afterchoose: function (localPics) {
         var that = this
-        for (var i=0;i<localPics.length;i++)
-        {
-            weixin.qunliao.users={"avatar":'http://icons.maiyizhi.cn/uploading.png',"name":''}
-        }
-        this.setData({
-            weixin:weixin
+        // for (var i=0;i<localPics.length;i++){
+            var workInfo={"image":'http://icons.maiyizhi.cn/uploading.png',"name":''}
+        // }
+
+        that.setData({
+            workInfo:workInfo
         });
-        this.setData({ disabled: true });
-        wx.setStorageSync("weixin", weixin);
-        this.startUpload(localPics);
+        that.setData({ disabled: true });
+        wx.setStorageSync("weixin", workInfo);
+        that.startUpload(localPics);
+
     },
     startUpload: function (localPics) {
+
         var that = this;
         if(localPics.length) {
+
             upload.uploadSingleB({path: localPics[0], state: 1}, function (pic) {
+
                 if(pic){
-                    console.log(weixin.qunliao.users.length)
-                    weixin.qunliao.users = {"avatar":pic.url+'?imageView2/1/w/150/h/150',"name":''}
+                   
+                    var workInfo2 = {"image":pic.url+"?imageView2/1/w/150/h/150","name":''}
                     localPics = localPics.splice(1, localPics.length)
+                    console.log("workInfo")
+                    console.log(workInfo2)
+                    that.setData({
+                        workInfo:workInfo2
+                    });
+                    wx.setStorageSync("weixin", workInfo2);
+
                     that.onUploadComplete(localPics);
                     if (!localPics.length) {
                         that.setData({disabled: false});
@@ -118,10 +133,7 @@ afterchoose: function (localPics) {
         }
     },
     onUploadComplete: function (localPics) {
-        this.setData({
-            weixin:weixin
-        });
-        wx.setStorageSync("weixin", weixin);
+       
         if(localPics.length){
             this.startUpload(localPics);
         }
@@ -148,6 +160,7 @@ afterchoose: function (localPics) {
                             hasUserInfo: true,
                             workInfo:workInfo,
                           })
+                           wx.setStorageSync("weixin", workInfo);
                         }
                     })
                 }else if(res.tapIndex==1){
@@ -160,11 +173,14 @@ afterchoose: function (localPics) {
                         sourceType: ['album', 'camera'],
                         count:10,
                         success: function (res) {
+                         
+                          console.log(res.tempFilePaths)
                             that.afterchoose(res.tempFilePaths)
                         }
                     })
                 }else if(res.tapIndex==3){
-                    wx.showNavigationBarLoading();
+
+                    // wx.showNavigationBarLoading();
                     wx.showToast({
                         title: 'Loading……',
                         duration:2000,
@@ -172,17 +188,18 @@ afterchoose: function (localPics) {
                     })
                     api.random(function(res) {
                         console.log(res)
-                        var _user = {"avatar":res.user.avatar,"name":res.user.name}
-                        weixin.qunliao.users=_user
+                        console.log(1)
+                        var _user = {"image":res.user.avatar,"name":res.user.name}
+                        var workInfo=_user;
 
-                        wx.setStorageSync('temp_jietu_select_user', _user);
+                        // wx.setStorageSync('temp_jietu_select_user', _user);
 
                         that.setData({
-                            weixin: weixin
+                            workInfo: workInfo
                         })
-                        wx.setStorageSync("weixin", weixin);
+                        wx.setStorageSync("weixin", _user);
                         wx.hideToast()
-                        wx.hideNavigationBarLoading();
+                        // wx.hideNavigationBarLoading();
                     });
                 }
             },
@@ -194,10 +211,19 @@ afterchoose: function (localPics) {
 
  startTape(){
   var that =this;
-  // this.getSetting();
+  
+  if(!wx.getRecorderManager){
+    wx.showToast({
+      title: '微信版本过低',
+      icon: 'success',
+      duration: 1000
+    })
+    console.log("微信版本过低")
+    return;
+  }
   recorderManager = wx.getRecorderManager();
    recorderManager.start({
-    // duration: 10000,
+      duration: 60000,
       sampleRate: 44100,
       numberOfChannels: 1,
       encodeBitRate: 192000,
@@ -206,26 +232,70 @@ afterchoose: function (localPics) {
    });
   recorderManager.onStart(() => {
     console.log('recorder start')
-    this.setData({
+    that.setData({
         startTape:!that.data.startTape,
-        tapeMessage:"正在录音"
+        tapeMessage:"00:00",
+        limitTime:"(60s)"
       });
+
+    var number = 0;
+    that.tapeTimer = setInterval(function(){
+        number++;
+        console.log(number)
+        var time;
+        var minute = Math.floor(number/60);
+        var second = number%60;
+        console.log(second)
+        if(second<10){
+          time = "0"+minute+":"+"0"+second;
+          that.setData({
+            tapeMessage:time
+          })
+          console.log(time)
+        }else if(second>=10){
+          time = "0"+minute+":"+second;
+          that.setData({
+            tapeMessage:time
+          })
+        }
+    },1000)
+
   })
    
+   
+
    },
  
  onTape(){
   var that = this;
-  if(this.data.tapeMessage==="正在录音"){
+  if(this.data.tapeMessage!="正在录音"){
 
       recorderManager.stop();
       recorderManager.onStop((res) => {
+        clearInterval(that.tapeTimer);
+        that.setData({
+          onTape:false,
+          
+        })
         console.log('recorder stop', res)
         const { tempFilePath } = res
+        wx.showLoading({
+          title: '上传中',
+        })
+
         
         upload.uploadVideo(res,function(result){
           console.log("result")
           console.log(result.url)
+          setTimeout(function(){
+            wx.hideLoading();
+            wx.showToast({
+              title: '成功',
+              icon: 'success',
+              duration: 500
+            })
+          },500)
+
           that.setData({
             tempFilePath:result.url
           })
@@ -237,22 +307,26 @@ afterchoose: function (localPics) {
 
     this.setData({
       onTape:false,
-      tapeMessage:"暂停"
+      
     })
+
   }
-  // else{
-  //    recorderManager.resume();
-  //    this.setData({
-  //     onTape:!that.data.onTape,
-  //     tapeMessage:"正在录音"
-  //   })
-  // }
+  
  },
  goPreview(){
   var tempFilePath = this.data.tempFilePath;
-  var workInfo = JSON.stringify(this.data.workInfo);
+  var workInfo = this.data.workInfo;
+  console.log(112)
+  console.log(workInfo)
+  var image = workInfo.image;
+  var name = workInfo.name;
+  // var workInfo = JSON.stringify(this.data.workInfo);
+  // var workInfo = encodeURIComponent(this.data.workInfo);
+  var url='../preview/preview?name='+name +'&'+'image=' + image +'&' + 'tempFilePath='+ tempFilePath
+  console.log("url")
+  console.log(url)
      wx.navigateTo({
-      url: '../preview/preview?workInfo=' + workInfo + '&' + 'tempFilePath='+ tempFilePath  
+      url: url  
     })
 },
  goResult(){
@@ -271,11 +345,15 @@ afterchoose: function (localPics) {
       // 来自页面内转发按钮
       console.log(res.target)
     }
+
     var tempFilePath = this.data.tempFilePath;
-    var workInfo = JSON.stringify(this.data.workInfo);
+    var workInfo = this.data.workInfo;
+    var image = workInfo.image;
+    var name = workInfo.name;
+
     return {
       title: '',
-      path: 'pages/preview/preview?workInfo='+ workInfo +'&' + 'tempFilePath='+ tempFilePath,
+      path: 'pages/calling/calling?name='+name +'&'+'image=' + image +'&' + 'tempFilePath='+ tempFilePath,
       success: function(res) {
         // 转发成功
       },
@@ -317,8 +395,20 @@ getSetting(){
         return
       }
     })
+},
+writeComplete(e){
+  // console.log("detail")
+  // console.log(e.detail)
+  var that = this
+  var workInfo = that.data.workInfo
+  // var newWorkInfo = e.detail.value
+  var newWorkInfo ={image:workInfo.image,name:e.detail.value}
+  that.setData({
+    workInfo:newWorkInfo
+  })
+  wx.setStorageSync("weixin", workInfo);
+  // console.log(this.data.workInfo)
 }
-
 
 }));
 

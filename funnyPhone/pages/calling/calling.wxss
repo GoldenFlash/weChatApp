@@ -19,7 +19,6 @@
 	height:100vh;
 	background-color:rgba(0,0,0,0.8); 
 }
-
 .wrapper .video .image-wrapper image{
 	height:230rpx;
 	width:230rpx;

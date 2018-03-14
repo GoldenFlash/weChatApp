@@ -177,12 +177,12 @@ Page(Object.assign({}, Zan.Tab, {
             if(utils.isEmptyObject(_app[type])){_app[type] = {};}
             if(utils.isEmptyObject(_app[type].users)){_app[type].users = [];}
 
-            var _user = {"avatar":e.currentTarget.dataset.avatar,"name":e.currentTarget.dataset.name}
+            var _user = {"image":e.currentTarget.dataset.avatar,"name":e.currentTarget.dataset.name}
             _app[type].users.push(_user)
 
             //wx.setStorageSync('temp_jietu_select_user', _user);
 
-            wx.setStorageSync(app, _app);
+            wx.setStorageSync(app, _user);
         }
 
         wx.navigateBack();

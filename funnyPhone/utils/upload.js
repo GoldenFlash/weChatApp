@@ -86,12 +86,16 @@ function _uploadVideo(video, successCB, failCB) {
 function uploadSingleB(pic, successCB) {
     var extand = getExtand(pic.path);
     // 获取七牛上传token
-    api.getQiniuImageTokenApi(function (token) {
+
+    api.getQiniuTokenApi("pics",function (token) {
+        
         if (token) {
             // 获取图片宽高信息
+
             wx.getImageInfo({
                 src: pic.path,
                 success: function (info) {
+
                     // 上传图片
                     var flie = pic.path.split('//')[1];
                     var key = randomString(32);
@@ -106,6 +110,8 @@ function uploadSingleB(pic, successCB) {
                         },
                         // 上传成功，构造remoteUrl，回调给外面
                         success: function (remoteUrl) {
+                            console.log(12)
+                            console.log(remoteUrl)
                             var aa = JSON.parse(remoteUrl.data);
                             var img_url = 'http://pics.maiyizhi.cn/';
                             img_url += aa.key;

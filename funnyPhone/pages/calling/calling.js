@@ -54,7 +54,7 @@ Page({
     })
 
     var number = 0;
-    that.previewTimer = setInterval(function(){
+    that.callingTimer = setInterval(function(){
         number++;
         console.log(number)
         var time;
@@ -75,15 +75,17 @@ Page({
         }
     },1000)
 
-    this.audioCtx.pause()
+    this.audioCtx.pause();
     console.log("audioUrlaudioUrl")
     console.log(that.data.tempFilePath)
     this.audioCtx.setSrc(that.data.tempFilePath)
-    this.audioCtx.play()
+    this.audioCtx.play();
   },
   rejectCall(){
-    clearInterval(this.previewTimer)
-    wx.navigateBack();
+    clearInterval(this.callingTimer);
+    wx.redirectTo({
+      url: '../produce/produce'
+    })
   },
   timer(){
     var number = 0;

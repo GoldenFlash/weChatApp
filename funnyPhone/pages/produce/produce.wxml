@@ -1,5 +1,5 @@
 <import src="../../zanui-weapp/dist/field/index.wxml" />
-<view class="producePage" catchtap="cancel">
+<view class="producePage" >
     <view class="form">
         <view class="zan-cell zan-cell--access" catchtap="chooseImage">
             <view class="zan-cell__bd image">
@@ -11,22 +11,30 @@
         <view class="zan-cell zan-cell--access">
             <view class="zan-cell__bd name">
                 <text style="font-size: 36rpx;">姓名</text>
-                <view style="font-size: 36rpx">{{workInfo.name}}</view>
+                <view style="font-size: 36rpx">
+                    <input class="input" style="margin-top: 30rpx;font-size: 36rpx;" type="text" value=" {{workInfo.name}}" bindblur="writeComplete" bindconfirm="writeComplete"/>
+                </view>
             </view>
         </view>
     </view>
     <view class="tap">
-    	<view>{{tapeMessage}}</view>
+    	<view>{{tapeMessage}} <text style="color:#F86767">{{limitTime}}</text></view>
+        <view></view>
     	<view class="startTape"  wx:if="{{!startTape}}">
-    		<image src="../../svg/keyboard-voice(1).svg" catchtap="startTape"></image>
+    		<image src="../../svg/luyin.png" catchtap="startTape"></image>
     	</view>
 		<view class="startTape"  wx:else="{{startTape}}">
-    		<image src="../../svg/stop(2).svg" wx:if="{{onTape}}" catchtap="onTape"></image>
-    		<image src="../../svg/play(2).svg" wx:else="{{!onTape}}"  catchtap="onTape"></image>
-	    	<view class="release" wx:if="{{!onTape}}">
-	    		<button catchtap="goPreview">预览</button>
-	    		<button open-type="share">分享</button>
-	    	</view>
+    		<image src="../../svg/zanting.png" wx:if="{{onTape}}" catchtap="onTape"></image>
+    		<image src="../../svg/kaishi.png" wx:else="{{!onTape}}"  catchtap="onTape"></image>
     	</view>
+        <view class="release">
+            <button class="share" open-type="share" wx:if="{{!onTape}}">分享</button>
+            <view class="" wx:if="{{!onTape}}">
+                <view class="button">
+                    <button catchtap="cancel" style="border:none;">取消</button>
+                    <button style="border:none" catchtap="goPreview">预览</button>         
+                </view>
+            </view>
+        </view>
     </view>
 </view>

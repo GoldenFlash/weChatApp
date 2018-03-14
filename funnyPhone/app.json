@@ -2,7 +2,7 @@
   "pages": [
     "pages/produce/produce",
     "pages/index/index",
-    "pages/detail/detail",
+    "pages/calling/calling",
     "pages/preview/preview",
     "pages/selectUser/selectUser"
   ],

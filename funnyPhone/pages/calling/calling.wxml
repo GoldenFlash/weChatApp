@@ -5,7 +5,6 @@
 			<image src="{{workInfo.image}}"></image>
 			<view>{{workInfo.name}}</view>
 		</view>
-
 		<view class="icon">
 			<view class="uncall" catchtap="rejectCall">
 				<image src="../../svg/guaduan.png"></image>

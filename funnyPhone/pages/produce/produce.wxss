@@ -1,7 +1,7 @@
 /* pages/produce/produce.wxss */
 .producePage{
 	background-color: #F8F8F8;
-	height: 100vh;
+	height: 90vh;
 	width:750rpx;
 }
 .producePage .form{
@@ -45,8 +45,13 @@
 	line-height: 120rpx;
 	padding-left: 20rpx;
 }
-.producePage .form .name view:nth-child(2){
-	margin-left: 160rpx
+
+.producePage .form .name view{
+	margin-left: 160rpx;
+	line-height:120rpx; 
+}
+.producePage .form .name .input{
+	line-height:120rpx; 
 }
 
 
@@ -58,30 +63,71 @@
 	background-color: #fff;
 }
 .producePage .tap >view:nth-child(1){
+	position: relative;
 	text-align: center;
 	margin-top: 30rpx;
+	/*display: inline-block;*/
+}
+.producePage .tap >view:nth-child(2){
+	position: absolute;
+	right:340rpx;
+	top:30rpx;
+	text-align: center;
+	margin-top: 30rpx;
+	display:inline-block;
+	color:#F86767;
 }
 .producePage .tap .startTape{
 	text-align: center;
-	margin-top: 30rpx;
+	margin-top: 20rpx;
+	/*height:500rpx;*/
 	font-size: 40rpx;
 	color:red;
 	
 }
 .producePage .tap .startTape image{
-	height:200rpx;
-	width:200rpx;
+	height:180rpx;
+	width:180rpx;
 }
 .producePage .tap .release{
+	position: fixed;
+	bottom:0;
+	width:100%; 
+}
+
+.producePage .tap .release .share{
+	position: absolute;
+	width:90%;
+	bottom:90rpx;
+	left:50%;
+	transform: translateX(-50%);
+	background-color:transparent;
+	height:70rpx;
+	line-height: 70rpx;
+	color:#FF3c30;
+}
+.producePage .tap .release .share:after{
+	border:solid #F86767 1px;
+	border-radius:70rpx; 
+}
+.producePage .tap .release .button{
+	
+	bottom:0;
 	display: flex;
 	/*border:solid red 1px;*/
-	margin-top: 50rpx;
+	/*margin-top: 50rpx;*/
 	height:80rpx;
 }
-.producePage .tap .release >button{
+.producePage .tap .release .button >button{
 	flex:1;
 	text-align: center;
 	border:solid #EBEBEB 1px;
 	border-bottom: none;
-	line-height: 80rpx;
+	line-height: 70rpx;
+	background-color: transparent;
+	color:#F86767;
+	height:70;
+}
+.producePage .tap .release .button button::after{
+	border:none;
 }
