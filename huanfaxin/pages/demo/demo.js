@@ -68,6 +68,8 @@ Page({
    * 用户点击右上角分享
    */
   onShareAppMessage: function () {
-  
+    return {
+      title: '给你的手机换个发型吧',
+    }
   }
 })

@@ -3,6 +3,7 @@ var api = require('../../api.js');
 var util = require('../../utils/util.js');
 var upload = require('../../utils/upload.js');
 
+
 Page({
 
   /**
@@ -12,6 +13,7 @@ Page({
     fontSize: '',
     url:'',
     isShow:true,
+    canvasHidden:false
   },
 
   /**
@@ -37,8 +39,14 @@ Page({
             // console.log(res.tempFilePath)
             that.setData({
               url: res.tempFilePath,
-              isShow:false,
+              canvasHidden:true,
             })
+            setTimeout(()=>{
+              that.setData({
+                isShow:false,
+              })
+              
+            },1000)
           },
           error: function (res) {
             console.log(res)
@@ -125,18 +133,18 @@ Page({
         },
 
         fail: function(err) {
-          console.log(err);
+          // console.log(err);
           if (err.errMsg === "saveImageToPhotosAlbum:fail auth deny") {
-              console.log("用户一开始拒绝了，我们想再次发起授权")
-              console.log('打开设置窗口')
+              // console.log("用户一开始拒绝了，我们想再次发起授权")
+              // console.log('打开设置窗口')
 
               wx.openSetting({
                       success(settingdata) {
-                          console.log(settingdata)
+                          // console.log(settingdata)
                           if (settingdata.authSetting['scope.writePhotosAlbum']) {
-                              console.log('获取权限成功，给出再次点击图片保存到相册的提示。')
+                              // console.log('获取权限成功，给出再次点击图片保存到相册的提示。')
                           } else {
-                              console.log('获取权限失败，给出不给权限就无法正常使用的提示')
+                              // console.log('获取权限失败，给出不给权限就无法正常使用的提示')
                           }
                       }
                   })
@@ -190,10 +198,9 @@ Page({
   },
 
   onShareAppMessage: function () {
-      return {
-       title: '一键定制属于你的iPhoneX壁纸',
-       path: '/pages/index/index'
-       }
+    return {
+      title: '给你的手机换个发型吧',
+    }
   },
   tapShare:function(){
     wx.showShareMenu({

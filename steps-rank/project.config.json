@@ -9,7 +9,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "1.9.91",
-	"appid": "wx896b0398c56fa7e3",
+	"appid": "wxf32d7a51d2431de2",
 	"projectname": "%E6%AD%A5%E6%95%B0%E6%8E%92%E8%A1%8Ctest",
 	"isGameTourist": false,
 	"condition": {
@@ -26,12 +26,13 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 0,
+			"current": -1,
 			"list": [
 				{
 					"id": -1,
 					"name": "1044",
 					"pathName": "pages/index/index",
+					"query": "",
 					"scene": "1044",
 					"shareInfo": {
 						"groupName": "测试模拟群0",

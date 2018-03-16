@@ -1,4 +1,4 @@
-<import src="/zanui/toast/index.wxml" />
+<import src="../../zanui-weapp/dist/toast/index.wxml" />
 <template name="weCropper">
     <canvas
             class="cropper"

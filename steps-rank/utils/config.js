@@ -1,8 +1,8 @@
 
 var config = {
-    version:"11.4",
-    app_name:"qunbushupaihang",
-    app_title:"微生成"
+    version:"0.2",
+    app_name:"qunbushupaiming",
+    app_title:"群排行"
 }
 module.exports = {
   config: config

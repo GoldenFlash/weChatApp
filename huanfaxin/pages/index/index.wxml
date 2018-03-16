@@ -1,61 +1,67 @@
+<import src="../../zanui-weapp/dist/tab/index.wxml" />
 <view class="app">
-  <!-- <scroll-view scroll-y style="height: {{scrollHeight}}"> -->
-    <view class="previewer">
-      <!-- 首页点击事件绑定 -->
-      <view class="phone" bindtap="onTapImage" style="font-size: {{fontSize}}px;"> 
-        <!-- 锁屏显示与图表切换显示 -->
-        <view class="bg-cover">
-          <image wx:if='{{lockShow =="shouping"}}' class="shouping cover" src="../statics/shouping1.png" mode="{{widthFix}}"></image>
-          <image wx:if='{{lockShow == "suoping"}}' class="souping cover" src="../statics/suoping1.png" mode="{{widthFix}}"></image>
-        </view>
-        
-        <!-- 自定义发型显示 -->
-        <image class="hairStyle" style="z-index: 5;" src="{{tapImage}}" mode="widthFix"></image>
-        <!-- 背景图片显示 -->
-        <image class="background {{textShow == true ? '':'yes-img'}}" src="{{image}}" style="font-size: {{fontSize}}px;" mode="aspectFill"></image>
-        <view class="no-img">
-         
-        </view>
-       
-      </view>
+    <!-- <scroll-view scroll-y style="height: {{scrollHeight}}"> -->
+    <view class="phone" style="height:100%;width:100%">
+        <swiper style="width: 100%;height:100%">
+            <swiper-item style="height:100%;width:100%">
+                <view class="preview" catchtap="onTapImage">
+                    <view class="background-wrapper">
+                        <image class="background-image" src="{{image}}" mode="aspectFill"></image>
+                    </view>
+                    <view class="hair-wrapper">
+                        <image class="hairStyle" style="z-index: 5;" src="{{tapImage}}" mode="widthFix"></image>
+                    </view>
+                    <image class="shouping cover" src="../statics/suoping1.png" mode="widthFix"></image>
+                    <image class="frame" src="../statics/frame.png"></image>
+                </view>
+            </swiper-item>
+            <swiper-item style="height:100%;width:100%">
+                <view class="preview" catchtap="onTapImage">
+                    <view class="background-wrapper">
+                        <image class="background-image" src="{{image}}" mode="aspectFill"></image>
+                    </view>
+                    <view class="hair-wrapper">
+                        <image class="hairStyle" style="z-index: 5;" src="{{tapImage}}" mode="widthFix"></image>
+                    </view>
+                    <image class="shouping cover" src="../statics/shouping1.png" mode="widthFix"></image>
+                    <image class="frame" src="../statics/frame.png"></image>
+                </view>
+            </swiper-item>
+        </swiper>
     </view>
-  <!-- </scroll-view> -->
-  <view class="control">
-    <!-- 功能按钮 -->
-    
-    <view class="step-2"> <!-- wx:if="{{isSure}}" -->
-      <view class="control-icon">
-        <view class="icon-bg icon">
-          <image src="../statics/bg.png" bindtap="changeBgImage"></image>
-          <view>系统背景</view>
+    <view class="control">
+        <view class="control-icon">
+            <view class="icon-bg icon">
+                <image src="../statics/bg.png" bindtap="changeBgImage"></image>
+                <view style="color: #E2826B">背景图</view>
+            </view>
+            <view class="icon-album icon" bindtap="showHair">
+                <image src="../statics/liuhai.png"></image>
+                <view class="iconalbum-wrapper"></view>
+                <view style="color:#AB4D95">刘海样式</view>
+            </view>
+            <view class='icon-download icon ' bindtap="confirm">
+                <image src="../statics/download.png"></image>
+                <view class="icondownload-wrapper"></view>
+                <view style="color:#DEA751">生成壁纸</view>
+            </view>
         </view>
-        <view class="icon-album icon" bindtap="onTapImage">
-          <image src="../statics/album.png"></image>
-          <view class="iconalbum-wrapper"></view>
-          <view>相册选图</view>
-        </view>
-        <view class="icon-album icon" bindtap="coverPreview">
-          <image src="../statics/preview.png"></image>
-          <view class="iconalbum-wrapper"></view>
-          <view>预览</view>
-        </view>
-        <view class='icon-download icon '  bindtap="confirm" >
-          <image src="../statics/download.png" ></image>
-          <view class="icondownload-wrapper"></view>
-          <view>生成壁纸</view>
-        </view>
-      </view>
-      <!-- <view class="step-2-h3">在下方，选择你 iPhone X 的新发型</view> -->
-      <view class="wrap">
-        <scroll-view scroll-x style='height:150px;width:100%;'>
-          <view wx:for="{{datas}}" wx:key="index" data-index="{{index}}" class='figure' bindtap="tapFigure">
-            <image src="{{item.url}}"></image>
-            <span>{{item.name}}</span>
-            <view class="{{index !== trueIndex? '':'true'}}"></view>
-          </view>
-        </scroll-view>
-      </view>
     </view>
-   
-  </view>
+    <view class="hair-wrap" wx:if="{{changeHair}}" catchtap="showHair">
+        <view class="wrap" catchtap="stop">
+            <view class="title">
+                <template is="zan-tab" data="{{ tab: { list:[{id: 'bodian',title: '波点'}, {id: 'dongwu',title: '动物'}, {id: 'faxing',title: '发型'}, {id: 'jieri',title: '节日'}, {id: 'shenghuo',title: '生活'},{id: 'love',title: 'love'},{id: 'wenlu',title: '纹路'}], selectedId, scroll:false, height:1000 }, componentId: 'tab1' }}"></template>
+            </view>
+            <view class="image">
+                <scroll-view scroll-x style='height:150px;width:100%;'>
+                  <view wx:for="{{datas}}" wx:key="index" data-index="{{index}}" class='figure' catchtap="tapFigure">
+                      <image src="{{item}}"></image>
+
+                      <!-- <span>{{item.name}}</span> -->
+                      <view class="{{index !== trueIndex? '':'true'}}"></view>
+                  </view>
+              </scroll-view>
+            </view>
+        </view>
+    </view>
 </view>

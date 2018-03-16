@@ -1,135 +1,66 @@
 page{
-  background-color: #fff;
+  /*background-color: #fff;*/
 }
 .app {
-  position: fixed;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-}
-
-.previewer {
- 
-  background-color: #fafafa;
   width:100%;
-  height: 100%;
+  height:100vh;
+  background-color: #eff7ff;
+
 }
 
-
-.previewer .phone {
+.preview {
   position: relative;
-  width:100%;
-  height:100%;
-  -webkit-transition: all .4s ease;
-  transition: all .4s ease;
-  will-change: width, height, padding;
+  margin:0 auto;
+  width:90%;
+  height:100vh;
+  overflow: hidden;
+  margin-top: -10rpx;
 }
-.previewer .phone .bg-cover{ 
+.preview .background-wrapper{
+  /*border:solid red 1px;*/
   position:absolute;
-  top:0;
-  bottom:0;
-  right:0;
-  left:0;
-  z-index: 100;
-  margin-top:-0.5rem;
-
-
+  left:50%;
+  top:95rpx;
+  transform: translateX(-50%);
+  width:400rpx;
+  height:840rpx;
+  border-radius: 20rpx
 }
-
-.background {
-  position: absolute;
+.preview .background-wrapper .background-image{
   width:100%;
   height:100%;
-  z-index: 4;
+  border-radius: 20rpx
 }
-
-.previewer .phone .bg-cover .cover{
-  position: absolute;
-  width:100%;
-  height:100%;
-  z-index: 6;
+.preview .hair-wrapper{
+  position:absolute;
+  left:141rpx;
+  top:96rpx;
+  width:405rpx;
 }
-.hairStyle{
-  position: absolute;
-  width:100%;
-  height:100%;
-  z-index: 6;
+.preview .hair-wrapper image{
+  width:390rpx;
 }
-
-.previewer .phone:before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  content: "";
-  /*background-image: url(data:image/svg+xml;base64,PHN2ZyB4bWxucz0iaHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmciIHZpZXdCb3g9IjAgMCA3MjYgMTQ1NCI+PHBhdGggZD0iTTcyMiAzMzVWMTA3QTEwNyAxMDcgMCAwIDAgNjE1IDBIMTExQTEwNyAxMDcgMCAwIDAgNCAxMDd2OTBIMHY1NWg0djQ4YTQgNCAwIDAgMC00IDR2OTcuMDExN2E0Ljk4ODcgNC45ODg3IDAgMCAwIDQgNC44ODg3VjQzM2E0IDQgMCAwIDAtNCA0djk3LjAxMTdhNC45ODg3IDQuOTg4NyAwIDAgMCA0IDQuODg4N1YxMzQ3YTEwNyAxMDcgMCAwIDAgMTA3IDEwN2g1MDRhMTA3IDEwNyAwIDAgMCAxMDctMTA3VjUwNC4zMzIyYTYuOTU0IDYuOTU0IDAgMCAwIDQtNi4yOTIyVjMzOWE0IDQgMCAwIDAtNC00em0tMTEgMTAxMmE5NiA5NiAwIDAgMS05NiA5NkgxMTFhOTYgOTYgMCAwIDEtOTYtOTZWMTA3YTk2IDk2IDAgMCAxIDk2LTk2aDUwNGE5NiA5NiAwIDAgMSA5NiA5NnoiIG9wYWNpdHk9Ii4zIi8+PHBhdGggZD0iTTYxNSAxMUgxMTFhOTYgOTYgMCAwIDAtOTYgOTZ2MTI0MGE5NiA5NiAwIDAgMCA5NiA5Nmg1MDRhOTYgOTYgMCAwIDAgOTYtOTZWMTA3YTk2IDk2IDAgMCAwLTk2LTk2em02NCAxMzM2YTY0IDY0IDAgMCAxLTY0IDY0SDExMWE2NCA2NCAwIDAgMS02NC02NFYxMDdhNjQgNjQgMCAwIDEgNjQtNjRoNjQuODQzOEExMS4xNTYyIDExLjE1NjIgMCAwIDEgMTg3IDU0LjE1NjIgMzkuODQzNyAzOS44NDM3IDAgMCAwIDIyNi44NDM4IDk0SDQ5OWE0MCA0MCAwIDAgMCA0MC00MCAxMSAxMSAwIDAgMSAxMS0xMWg2NWE2NCA2NCAwIDAgMSA2NCA2NHoiLz48cGF0aCBmaWxsPSIjMzMzIiBkPSJNNDAxIDUxaC03NmE2IDYgMCAwIDAgMCAxMmg3NmE2IDYgMCAwIDAgMC0xMnptNDAtNmExMiAxMiAwIDEgMCAxMiAxMiAxMiAxMiAwIDAgMC0xMi0xMnoiLz48L3N2Zz4=);*/
-  /*background-image: url("http://pics.maiyizhi.cn/Ck5ZkT6fhayfQSm4AskG5SiHm6zwM2sQ.png");*/
-  background-repeat: no-repeat;
-  background-size: contain;
-  z-index: 6;
+.preview .cover{
+  position:absolute;
+  left:50%;
+  top:95rpx;
+  transform: translateX(-50%);
+  width:400rpx;
+  height:800rpx;
+  border-radius: 20rpx
 }
-
-.previewer .phone .yes-img:before {
-  bottom: 0;
-  z-index: 1;
-  content: "";
-  background-image: url('http://pics.maiyizhi.cn/lock_screen.svg');
-  /*background-image: url('http://pics.maiyizhi.cn/ZWAsmm4SHPJARAwYZAmaX3wNjz5mph65.png');*/
-  background-repeat: no-repeat;
-  background-position: 50%;
-  background-size: contain;
-  opacity: 1;
+.preview .frame{
+  position:absolute;
+  left:-54rpx;
+  top:59.5rpx;
+  
+  width:777rpx;
+  height:905rpx;
+  border-radius: 20rpx
 }
-
-.previewer .phone .no-img {
-  position: absolute;
-  left: 0;
-  right: 0;
-  z-index: 7;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  -webkit-box-orient: vertical;
-  -webkit-box-direction: normal;
-  -ms-flex-direction: column;
-  flex-direction: column;
-  margin: 0;
-}
-
-.previewer .phone .no-img .tip, .previewer .phone .no-img:before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  left: 0;
-  -webkit-transition: opacity .2s ease;
-  transition: opacity .2s ease;
-}
-
-.previewer .phone .no-img .tip {
-  opacity: 1;
-  -webkit-box-sizing: border-box;
-  box-sizing: border-box;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
-  display: flex;
-  padding: .43em .8em;
-  margin: 0;
-  font-size: 1.25em;
-  font-weight: 700;
-  color: #fff;
-  text-shadow: 0 0 8px rgba(0, 0, 0, .2);
-}
-
 .control {
   position: fixed;
-  z-index: 101;
+  z-index: 10;
   bottom: 0;
   left: 0;
   right: 0;
@@ -137,112 +68,75 @@ page{
   font-size:0.8rem;
 }
 
-.control .step-1 {
-  background-color: #fafafa;
-}
 
-.control .step-1 button {
-  display: block;
-  width: calc(100vw - 240px);
-  min-width: 8em;
-  max-width: 12em;
-  padding: 0;
-  margin: 24px auto;
-  font-size: 18px;
-  font-weight: 700;
-  line-height: 48px;
-  color: #fff;
-  text-align: center;
-  background-color: #1aad19;
-  border: 0;
-  border-radius: 24px;
-  outline: 0;
-  -webkit-transition: background-color .2s ease;
-  transition: background-color .2s ease;
-}
-
-.control .step-1:after, .control .step-1:before, .control .step-2:after, .control .step-2:before {
-  display: table;
-  clear: both;
-  content: "";
-}
-
-.control .step-2 {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  left: 0;
-  background-color:rgba(255,255,255,0);
-  
-  z-index: 9;
-  /*!*opacity: 0;*!*/
-  /*-webkit-transition: opacity .2s ease, -webkit-transform .4s ease;*/
-  /*transition: opacity .2s ease, -webkit-transform .4s ease;*/
-  /*transition: transform .4s ease, opacity .2s ease;*/
-  /*transition: transform .4s ease, opacity .2s ease, -webkit-transform .4s ease;*/
-  /*-webkit-transform: translateY(100%);*/
-  /*transform: translateY(100%);*/
-  /*will-change: transform, opacity;*/
-}
-
-.control .step-2 .step-2-h3 {
-  margin: 0;
-  font-size: 14px;
-  font-weight: 700;
-  line-height: 64px;
-  color: #1aad19;
-  text-align: center;
-}
-.control .step-2 .control-icon{
-  height:6rem;
+.control .control-icon{
+  height:200rpx;
   width:80%;
-  display: -webkit-box;
-  display: -ms-flexbox;
-  display: -webkit-flex;
   display: flex;
   justify-content:center;
   margin:0 auto;
 }
-.control .step-2 .control-icon .icon{
+.control  .control-icon .icon{
   flex:1;
   text-align: center;
-  color:#FFFFFF;
+  color:red;
 
 }
-.control .step-2 .control-icon .icon image{
-  width:3rem;
-  height:3rem;
+.control  .control-icon .icon image{
+  width:90rpx;
+  height:90rpx;
 }
-.control .step-2 .wrap {
-  -webkit-box-flex: 1;
-  -ms-flex: 1;
-  flex: 1;
-  padding: 0 16px;
+.no-img image{
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.hair-wrap{
+  position:fixed;
+  bottom:0;
+  width:100%;
+  height:100%;
+  z-index: 100;
   white-space: nowrap;
 }
-
-.control .step-2 .wrap .figure {
+.hair-wrap .wrap{
+  position:absolute;
+  width:100%;
+  bottom:0; 
+  height:300rpx;
+  
+}
+.hair-wrap .wrap .image{
+  padding-top:50rpx;
+  background-color: #fff;
+}
+.hair-wrap  .wrap .figure {
   position: relative;
   display: inline-block;
   margin-right: 8px;
 }
 
-.control .step-2 .wrap .figure image {
-  width: 64px;
-  height: 64px;
-  padding: 4px;
+.hair-wrap  .wrap .figure image {
+  width: 128px;
+  height: 100rpx;
   margin: 0;
   display: block;
   overflow: hidden;
   background-repeat: no-repeat;
   background-position: 50%;
   background-size: cover;
-  border-radius: 12px;
+  /*border-radius: 12px;*/
   -webkit-box-shadow: inset 0 0 0 4px #000;
   box-shadow: inset 0 0 0 4px #000;
 }
 
-.control .step-2 .wrap .figure span {
+.hair-wrap  .wrap .figure span {
   display: inline-block;
   width: 100%;
   margin: 8px 0 0;
@@ -250,11 +144,10 @@ page{
   line-height: 16px;
   text-align: center;
 }
-.control .step-2 .wrap .figure .true{
-  position: relative;
-
+.hair-wrap .wrap .figure .true{
+  
 }
-.control .step-2 .wrap .figure .true:before{
+.hair-wrap .wrap .figure .true:before{
   content: "";
   bottom: 24px;
   right: 0;
@@ -266,18 +159,12 @@ page{
   background-size: contain;
 
 }
-.control .step-2 .wrap .figure .true image{
+.hair-wrap .wrap .figure .true image{
   display: block;
   width: 50rpx;
   height: 50rpx;
 }
-.no-img image{
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  display: block;
-  width: 100%;
-  height: 100%;
+.hair-wrap .wrap .title{
+  height:90rpx;
+  /*border:solid red 1px;*/
 }

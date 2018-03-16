@@ -1,77 +1,224 @@
-var data = {
-  "0": {
-    url:"../../styles/JpiTkMYbwjXQd6jsD3hx2bmhJ7yy7Ze8.png",
-    name:'🐻小熊'
-  },
-  "1":{
-    url: "../../styles/xfrQXdJwmymBMJrbMMTH5SbX5EQkBAdh.png",
-    name:'🐱喵呜'
-  },
-  "2":{
-    url: "../../styles/iRdnjGC62dFk2PaSw4atft3f5YeDF6bW.png",
-    name:'🦌麋鹿'
-  },
-  "3":{
-    url: "../../styles/xfrQXdJwmymBMJrbMMTH5SbX5EQkBAdh.png",
-    name:'❤心型'
-  },
-  "4":{
-    url: "../../styles/4hTfDF8NTNTdSSd4KMiEbC4RfnA5Zp2N.png",
-    name:'🎅圣诞帽'
-  },
-  "5":{
-    url: "../../styles/YEE8Zjj2T2eb3h2HxFsYhaEnsjhR2SAb.png",
-    name:'🐷小猪'
-  },
-  "6":{
-    url: "../../styles/FepenktSHbkidt6x8cyRs2eZxtnsJxar.png",
-    name:'👚T恤'
-  },
-  "7":{
-    url: "../../styles/x8XZxZKn3ETpYhTHes8DHHZzZNFA5aRp.png",
-    name:'👑王冠'
-  },
-  "8":{
-    url: "../../styles/wt5sdCrnPzyemtTXrGt3ZFabpQ3aaH2h.png",
-    name:'🐰兔子'
-  },
-  "9":{
-    url: "../../styles/r67wKH7dEd8sdJPmGQRrk3dccPGMNjEM.png",
-    name:'🌚齐刘海儿'
-  },
-  "10":{
-    url: "../../styles/6RxCrDNt2atTQjabZEyYzyYHTKAsE3my.png",
-    name:'🌊大波浪'
-  },
-  "11":{
-    url: "../../styles/Bx3bZGBeDisjbH3hFT5f32EMJpWDNyZr.png",
-    name:'🌸小碎花'
-  },
-  "12":{
-    url: "../../styles/rhBx7s8EnAnCmhif7FZnYWDa4Em8yhsA.png",
-    name:'🌙月牙儿'
-  },
-  "13":{
-    url: "../../styles/y4k5R8ENeyh6G8YszRXCZyKtQzbC4w3A.png",
-    name:'🤫某N胖'
-  },
-  "14":{
-    url: "../../styles/PB4bxKP2D8s5djCWP4h66BcXWtCBbNyk.png",
-    name:'👗连衣裙'
-  },
-  "15":{
-    url: "../../styles/kAMdrFZfA3jmEWb7354wjrDtQExceCST.png",
-    name:'小虎牙'
-  },
-  "16":{
-    url: "../../styles/hb44kHmcbhGHHBfYBdBE4accrhakfBQz.png",
-    name:'🤐拉链'
-  },
-
-};
-
-
-
+﻿var data = {
+    bodian: [
+        {url:"../../styles/yulantu/bodian/bodian_1_yu.png",}
+        {url:"../../styles/yulantu/bodian/bodian_2_yu.png",}
+       {url:"../../styles/yulantu/bodian/bodian_3_yu.png",}
+        {url:"../../styles/yulantu/bodian/bodian_4_yu.png",}
+        {url:"../../styles/yulantu/bodian/bodian_5_yu.png",}
+        {url:"../../styles/yulantu/bodian/bodian_6_yu.png",}
+        {url:"../../styles/yulantu/bodian/bodian_7_yu.png",}
+        {url:"../../styles/yulantu/bodian/bodian_8_yu.png",}
+        {url:"../../styles/yulantu/bodian/bodian_9_yu.png",}
+       {url: "../../styles/yulantu/bodian/bodian_10_yu.png",}
+        {url:"../../styles/yulantu/bodian/bodian_11_yu.png"}
+    ],
+    dongwu: [
+        {url:"../../styles/yulantu/dongwu/dongwu_1_yu.png",
+       {url: "../../styles/yulantu/dongwu/dongwu_2_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_3_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_4_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_5_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_6_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_7_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_8_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_9_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_10_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_11_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_12_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_13_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_14_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_15_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_16_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_17_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_18_yu.png",
+        "../../styles/yulantu/dongwu/dongwu_19_yu.png",
+    ],
+    faxing: [
+        "../../styles/yulantu/faxing/faxing_1_yu.png",
+        "../../styles/yulantu/faxing/faxing_1_yu.png",
+        "../../styles/yulantu/faxing/faxing_1_yu.png",
+        "../../styles/yulantu/faxing/faxing_1_yu.png",
+        "../../styles/yulantu/faxing/faxing_1_yu.png",
+        "../../styles/yulantu/faxing/faxing_1_yu.png",
+        "../../styles/yulantu/faxing/faxing_1_yu.png",
+        "../../styles/yulantu/faxing/faxing_1_yu.png",
+        "../../styles/yulantu/faxing/faxing_1_yu.png",
+        "../../styles/yulantu/faxing/faxing_10_yu.png",
+    ],
+    jieri: [
+        "../../styles/yulantu/jieri/jieri_1_yu.png",
+        "../../styles/yulantu/jieri/jieri_2_yu.png",
+        "../../styles/yulantu/jieri/jieri_3_yu.png",
+        "../../styles/yulantu/jieri/jieri_4_yu.png",
+        "../../styles/yulantu/jieri/jieri_5_yu.png",
+        "../../styles/yulantu/jieri/jieri_6_yu.png",
+        "../../styles/yulantu/jieri/jieri_7_yu.png",
+        "../../styles/yulantu/jieri/jieri_8_yu.png",
+        "../../styles/yulantu/jieri/jieri_9_yu.png",
+        "../../styles/yulantu/jieri/jieri_10_yu.png",
+        "../../styles/yulantu/jieri/jieri_11_yu.png",
+        "../../styles/yulantu/jieri/jieri_12_yu.png",
+        "../../styles/yulantu/jieri/jieri_13_yu.png",
+        "../../styles/yulantu/jieri/jieri_14_yu.png",
+        "../../styles/yulantu/jieri/jieri_15_yu.png",
+        "../../styles/yulantu/jieri/jieri_16_yu.png",
+        "../../styles/yulantu/jieri/jieri_17_yu.png",
+        "../../styles/yulantu/jieri/jieri_18_yu.png",
+    ],
+    shenghuo: [
+        "../../styles/yulantu/shenghuo/shenghuo_1_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_2_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_3_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_4_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_5_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_6_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_7_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_8_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_9_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_10_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_11_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_12_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_13_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_14_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_15_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_16_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_17_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_18_yu.png",
+        "../../styles/yulantu/shenghuo/shenghuo_19_yu.png",
+    ],
+    love: [
+        "../../styles/yulantu/love/love_1_yu.png",
+        "../../styles/yulantu/love/love_2_yu.png",
+        "../../styles/yulantu/love/love_3_yu.png",
+        "../../styles/yulantu/love/love_4_yu.png",
+    ],
+    wenlu: [
+        "../../styles/yulantu/wenlu/wenlu_1_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_2_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_3_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_4_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_5_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_6_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_7_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_8_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_9_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_10_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_11_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_12_yu.png",
+        "../../styles/yulantu/wenlu/wenlu_13_yu.png",
+    ],
+}
+var hair = {
+    bodian: [
+        "../../styles/hair/bodian/bodian_1.png",
+        "../../styles/hair/bodian/bodian_2.png",
+        "../../styles/hair/bodian/bodian_3.png",
+        "../../styles/hair/bodian/bodian_4.png",
+        "../../styles/hair/bodian/bodian_5.png",
+        "../../styles/hair/bodian/bodian_6.png",
+        "../../styles/hair/bodian/bodian_7.png",
+        "../../styles/hair/bodian/bodian_8.png",
+        "../../styles/hair/bodian/bodian_9.png",
+        "../../styles/hair/bodian/bodian_10.png",
+        "../../styles/hair/bodian/bodian_11.png"
+    ],
+    dongwu: [
+        "../../styles/hair/dongwu/dongwu_1.png",
+        "../../styles/hair/dongwu/dongwu_2.png",
+        "../../styles/hair/dongwu/dongwu_3.png",
+        "../../styles/hair/dongwu/dongwu_4.png",
+        "../../styles/hair/dongwu/dongwu_5.png",
+        "../../styles/hair/dongwu/dongwu_6.png",
+        "../../styles/hair/dongwu/dongwu_7.png",
+        "../../styles/hair/dongwu/dongwu_8.png",
+        "../../styles/hair/dongwu/dongwu_9.png",
+        "../../styles/hair/dongwu/dongwu_10.png",
+        "../../styles/hair/dongwu/dongwu_11.png",
+        "../../styles/hair/dongwu/dongwu_12.png",
+        "../../styles/hair/dongwu/dongwu_13.png",
+        "../../styles/hair/dongwu/dongwu_14.png",
+        "../../styles/hair/dongwu/dongwu_15.png",
+        "../../styles/hair/dongwu/dongwu_16.png",
+        "../../styles/hair/dongwu/dongwu_17.png",
+        "../../styles/hair/dongwu/dongwu_18.png",
+        "../../styles/hair/dongwu/dongwu_19.png",
+    ],
+    faxing: [
+        "../../styles/hair/faxing/faxing_1.png",
+        "../../styles/hair/faxing/faxing_1.png",
+        "../../styles/hair/faxing/faxing_1.png",
+        "../../styles/hair/faxing/faxing_1.png",
+        "../../styles/hair/faxing/faxing_1.png",
+        "../../styles/hair/faxing/faxing_1.png",
+        "../../styles/hair/faxing/faxing_1.png",
+        "../../styles/hair/faxing/faxing_1.png",
+        "../../styles/hair/faxing/faxing_1.png",
+        "../../styles/hair/faxing/faxing_10.png",
+    ],
+    jieri: [
+        "../../styles/hair/jieri/jieri_1.png",
+        "../../styles/hair/jieri/jieri_2.png",
+        "../../styles/hair/jieri/jieri_3.png",
+        "../../styles/hair/jieri/jieri_4.png",
+        "../../styles/hair/jieri/jieri_5.png",
+        "../../styles/hair/jieri/jieri_6.png",
+        "../../styles/hair/jieri/jieri_7.png",
+        "../../styles/hair/jieri/jieri_8.png",
+        "../../styles/hair/jieri/jieri_9.png",
+        "../../styles/hair/jieri/jieri_10.png",
+        "../../styles/hair/jieri/jieri_11.png",
+        "../../styles/hair/jieri/jieri_12.png",
+        "../../styles/hair/jieri/jieri_13.png",
+        "../../styles/hair/jieri/jieri_14.png",
+        "../../styles/hair/jieri/jieri_15.png",
+        "../../styles/hair/jieri/jieri_16.png",
+        "../../styles/hair/jieri/jieri_17.png",
+        "../../styles/hair/jieri/jieri_18.png",
+    ],
+    shenghuo: [
+        "../../styles/hair/shenghuo/shenghuo_1.png",
+        "../../styles/hair/shenghuo/shenghuo_2.png",
+        "../../styles/hair/shenghuo/shenghuo_3.png",
+        "../../styles/hair/shenghuo/shenghuo_4.png",
+        "../../styles/hair/shenghuo/shenghuo_5.png",
+        "../../styles/hair/shenghuo/shenghuo_6.png",
+        "../../styles/hair/shenghuo/shenghuo_7.png",
+        "../../styles/hair/shenghuo/shenghuo_8.png",
+        "../../styles/hair/shenghuo/shenghuo_9.png",
+        "../../styles/hair/shenghuo/shenghuo_10.png",
+        "../../styles/hair/shenghuo/shenghuo_11.png",
+        "../../styles/hair/shenghuo/shenghuo_12.png",
+        "../../styles/hair/shenghuo/shenghuo_13.png",
+        "../../styles/hair/shenghuo/shenghuo_14.png",
+        "../../styles/hair/shenghuo/shenghuo_15.png",
+        "../../styles/hair/shenghuo/shenghuo_16.png",
+        "../../styles/hair/shenghuo/shenghuo_17.png",
+        "../../styles/hair/shenghuo/shenghuo_18.png",
+        "../../styles/hair/shenghuo/shenghuo_19.png",
+    ],
+    love: [
+        "../../styles/hair/love/love_1.png",
+        "../../styles/hair/love/love_2.png",
+        "../../styles/hair/love/love_3.png",
+        "../../styles/hair/love/love_4.png",
+    ],
+    wenlu: [
+        "../../styles/hair/wenlu/wenlu_1.png",
+        "../../styles/hair/wenlu/wenlu_2.png",
+        "../../styles/hair/wenlu/wenlu_3.png",
+        "../../styles/hair/wenlu/wenlu_4.png",
+        "../../styles/hair/wenlu/wenlu_5.png",
+        "../../styles/hair/wenlu/wenlu_6.png",
+        "../../styles/hair/wenlu/wenlu_7.png",
+        "../../styles/hair/wenlu/wenlu_8.png",
+        "../../styles/hair/wenlu/wenlu_9.png",
+        "../../styles/hair/wenlu/wenlu_10.png",
+        "../../styles/hair/wenlu/wenlu_11.png",
+        "../../styles/hair/wenlu/wenlu_12.png",
+        "../../styles/hair/wenlu/wenlu_13.png",
+    ],
+}
 module.exports = {
-  data: data
+    data: data,
+    hair: hair,
 }

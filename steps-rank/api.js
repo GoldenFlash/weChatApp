@@ -1,6 +1,3 @@
-
-
-
 /**
  * Created by songyongming on 2017/4/17.
  */
@@ -43,6 +40,17 @@ function template(cat,type,page, successCB,failCB) {
       },successCB,failCB,(page==1?key:''),600);
   }
 }
+function templateinfo(id, successCB,failCB) {
+  var key = 'cache_templateinfo_'+id;
+  if(wc.get(key)){
+    successCB(wc.get(key));
+  }else{
+    system.myRequest('https://api.maiyizhi.cn/index.php?r=api/weixinzhushou/template',
+      {
+        id: id,
+      },successCB,failCB,key,300);
+  }
+}
 function zhuangxlist(cat,type,page,search, successCB,failCB) {
   var key = 'cache_zhuangxlist_cat_'+cat+'_type_'+type;
   if(wc.get(key) && !search && page==1){
@@ -73,7 +81,7 @@ function zhuangxinfo(id, successCB,failCB) {
     system.myRequest('https://api.maiyizhi.cn/index.php?r=api/zhuangx/zhuangxsinfo',
       {
         id: id,
-      },successCB,failCB,key,1200);
+      },successCB,failCB,key,300);
   }
 }
 function zhuangxadd(id, successCB,failCB) {
@@ -139,6 +147,9 @@ function getPayParamsApi(open_id, user_name,avatar,price,post_id,successCB) {
 }
 function pay(open_id, price,title,successCB) {
   system.myRequest('https://api.maiyizhi.cn/index.php?r=api/weixinzhushou/pay',{user_id:open_id,price:price,title:title},successCB);
+}
+function vippay(open_id, price,title,successCB) {
+  system.myRequest('https://api.maiyizhi.cn/index.php?r=api/weixinzhushou/vippay',{user_id:open_id,price:price,title:title},successCB);
 }
 function tixian(open_id, amount,formId,successCB,failCB) {
   console.log(failCB)
@@ -221,7 +232,7 @@ function init(successCB,failCB){
   if(wc.get(key)){
     successCB(wc.get(key));
   }else{
-    system.myRequest('https://data.maiyizhi.cn/producter/php/frontend/web/index.php?r=data/default/index', {
+    system.myRequest('https://'+utils.randdomDomain()+'.maiyizhi.cn/producter/php/frontend/web/index.php?r=data/default/index', {
     },successCB,failCB,key,200);
   }
 }
@@ -299,26 +310,24 @@ function login(sucess,fail,title){
   if(!title){
     title = '授权登录失败，部分功能将不能使用，是否重新登录？'
   }
-  var user = app.globalData.user;
+  // var user = app.globalData.user;
+  var user = "";
   if(utils.isEmptyObject(user)){
     wx.login({
       success: function (code) {
         var code = code.code;
         wx.getUserInfo({
           success: function (res) {
-
-            // console.log(res)
+            console.log(res)
             var rawData = encodeURIComponent(res.rawData);
             var signature = res.signature || '';
             var encryptedData = res.encryptedData;
             var iv = res.iv;
-            // console.log(getLoginApi)
             that.getLoginApi(code, rawData, signature, encryptedData, iv, function (info) {
-               console.log(1)
               var _user={'openid':info.user_id,'user_name':info.user_name,'avatar':info.user_avatar,'unionid':info.unionid};
               wx.setStorageSync("user",_user)
-              app.globalData.user = _user
-              sucess(_user)
+              // app.globalData.user = _user
+              sucess(_user,code)
             })
           },
           fail: function (res) {
@@ -408,42 +417,20 @@ function peopleFilter(originalUrl, modelType,type, successCB, failCB) {
     }, successCB, failCB);
 }
 function flower(originalUrl, modelType, successCB, failCB) {
-  
-  system.myRequest('https://' + utils.randdomDomain() +'.maiyizhi.cn/producter/php/frontend/web/index.php?r=distinguishPic/default/response',
+  system.myRequest('https://'+utils.randdomDomain()+'.maiyizhi.cn/producter/php/frontend/web/index.php?r=TencentAI/default/flower',
     {
-      path: originalUrl,
+      imgUrl: originalUrl,
+      type: modelType,
+      isNew:1,
     }, successCB, failCB);
 }
 function pet(originalUrl, modelType,successCB, failCB) {
-  system.myRequest('https://' + utils.randdomDomain() +'.maiyizhi.cn/producter/php/frontend/web/index.php?r=distinguishPic/default/response',
+  system.myRequest('https://'+utils.randdomDomain()+'.maiyizhi.cn/producter/php/frontend/web/index.php?r=TencentAI/default/objectr',
     {
-      path: originalUrl,
+      imgUrl: originalUrl,
+      type: modelType,
+      isNew:1,
     }, successCB, failCB);
-}
-
-function baipishulist(cat,page,search, successCB,failCB) {
-  var key = 'cache_baipishulist_cat_'+cat;
-  if(wc.get(key) && !search && page==1){
-    successCB(wc.get(key));
-  }else{
-    system.myRequest('https://api.maiyizhi.cn/index.php?r=api/baipishu/baipishulist',
-      {
-        cat: cat,
-        page: page,
-        search:search
-      },successCB,failCB,(!search && page==1?key:''),600);
-  }
-}
-function baipishuInfo(id, successCB,failCB) {
-  var key = 'cache_baipishuinfo_'+id;
-  if(wc.get(key)){
-    successCB(wc.get(key));
-  }else{
-    system.myRequest('https://api.maiyizhi.cn/index.php?r=api/baipishu/baipishusinfo',
-      {
-        id: id,
-      },successCB,failCB,key,1200);
-  }
 }
 
 module.exports = {
@@ -483,14 +470,14 @@ module.exports = {
   saveformids:saveformids,
   zhuangxgif:zhuangxgif,
   pay:pay,
+  vippay:vippay,
   templatePay:templatePay,
   sticker:sticker,
   getIcons:getIcons,
   decoration:decoration,
+  templateinfo:templateinfo,
   cosmetic:cosmetic,
   peopleFilter:peopleFilter,
   flower:flower,
   pet:pet,
-  baipishulist:baipishulist,
-  baipishuInfo:baipishuInfo,
 }

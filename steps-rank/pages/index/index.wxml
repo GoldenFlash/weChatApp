@@ -5,9 +5,9 @@
     <view class="user-card">
       <!-- 用户信息 -->
       <view class="user-avatar">
-        <image src="{{userInfo.avatarUrl}}" background-size="cover"></image>
+        <image src="{{userInfo.avatar}}" background-size="cover"></image>
         <view class="user-name">
-          <text>{{userInfo.nickName}}</text>
+          <text>{{userInfo.user_name}}</text>
         </view>
       </view>
       <!-- 今日步数 -->

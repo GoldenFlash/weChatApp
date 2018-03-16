@@ -5,7 +5,24 @@ const util = require('../../utils/util.js');
 const upload = require('../../utils/upload.js');
 var data = require('../../utils/data.js');
 // const config = require('../../utils/config.js').config;
-Page({
+const { extend, Tab } = require('../../zanui-weapp/dist/index');
+Page(extend({}, Tab,{
+
+
+
+  handleZanTabChange({ componentId, selectedId }) {
+    // componentId 即为在模板中传入的 componentId
+    // 用于在一个页面上使用多个 tab 时，进行区分
+    // selectId 表示被选中 tab 项的 id
+
+    console.log(data.data[selectedId])
+    
+    this.setData({
+      datas:data.data[selectedId],
+      hairImage:data.hair[selectedId]
+    })
+    console.log(this.data.datas[0])
+  },
   /**
    * 页面的初始数据
    */
@@ -13,28 +30,40 @@ Page({
     fontSize: '44.8418',
     imageUrl: '../statics/bizhi_0.jpg',
     imgIndex:0,
-    tapImage: '',
+    tapImage: "../../styles/hair/dongwu/dongwu_1.png",
     textShow: true,
     lockShow:'',
     scrollHeight: '100vh',
     buttonShow: true,
     isSure: false, /*false*/
     datas: [],
-    trueIndex: '',
+    hairImage:[],
+    trueIndex:0,
     buttonName: '换发型',
     image: '../statics/bizhi_0.jpg',
     coverSwitchStart:0,
     coverSwitchEnd:0,
-  },
+    changeHair:false,
 
+  },
+  onShareAppMessage: function () {
+    return {
+      title: '给你的手机换个发型吧',
+    }
+  },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
     var that = this;
+    // console.log()
+    // console.log(data.data.bodian)
     this.setData({
-      datas: data.data
+      datas: data.data.dongwu,
+      hairImage:data.hair.dongwu
+      // tapImage:data.data[0]
     });
+    // console.log(this.datas)
     // console.log(options)
     if (options.url != undefined) {
       var url = options.url;
@@ -186,7 +215,7 @@ Page({
     });
     setTimeout(function () {
       that.setData({
-        tapImage: that.data.datas[e.currentTarget.dataset.index].url,
+        tapImage: that.data.hairImage[e.currentTarget.dataset.index],
         trueIndex: e.currentTarget.dataset.index
         // buttonShow:true
       })
@@ -205,5 +234,12 @@ Page({
         })
       }
     })
-  }
-});
+  },
+  showHair(){
+    var that =this;
+    that.setData({
+      changeHair:!that.data.changeHair
+    })
+  },
+  stop(){}
+}));

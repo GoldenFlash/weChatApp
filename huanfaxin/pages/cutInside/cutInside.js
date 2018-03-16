@@ -4,7 +4,7 @@
 var weCropper = require('../../utils/weCropper')
 var api = require('../../api.js')
 var util = require('../../utils/util.js')
-var Zan = require('../../zanui/index');
+const { Toast, extend } = require('../../zanui-weapp/dist/index');
 var upload = require('../../utils/upload.js')
 var names = ['裁剪','生成换脸照','生成大头贴','生成美妆照','生成滤镜照','生成变妆照','生成头像'];
 const device = wx.getSystemInfoSync() // 获取设备信息
@@ -13,7 +13,7 @@ const height = device.windowHeight
       var model;
 var source;
 var type;
-Page(Object.assign({}, Zan.Toast, {
+Page(extend({}, Toast, {
   data: {
     name:'裁剪',
     cropperOpt: {
