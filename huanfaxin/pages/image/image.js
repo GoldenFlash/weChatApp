@@ -13,7 +13,8 @@ Page({
     fontSize: '',
     url:'',
     isShow:true,
-    canvasHidden:false
+    canvasHidden:false,
+    remoteUrl:"",
   },
 
   /**
@@ -21,10 +22,24 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
+    if(options.remoteImage){
+       console.log(2222222222)
+     
 
-    const device = wx.getSystemInfoSync() // 获取设备信息
+      this.setData({
+          url:options.remoteImage,
+         canvasHidden:true,
+         isShow:false,
+      })
+    } else if(!options.remoteImage){
+      console.log(12312312)
+       const device = wx.getSystemInfoSync() // 获取设备信息
     const width = device.windowWidth // 示例为一个与屏幕等宽的正方形裁剪框
     const height = device.windowHeight
+
+    wx.showLoading({
+        title: '图片生成中',
+    })
 
     if (options.imageUrl !== undefined) {
       const ctx = wx.createCanvasContext('demo');
@@ -36,52 +51,68 @@ Page({
           destHeight:2436,
           canvasId: 'demo',
           success: function(res) {
-            // console.log(res.tempFilePath)
+            console.log("tempFilePath",res.tempFilePath)
+
             that.setData({
               url: res.tempFilePath,
               canvasHidden:true,
             })
-            setTimeout(()=>{
-              that.setData({
-                isShow:false,
-              })
               
-            },1000)
+             upload.uploadSingleB(res.tempFilePath, function (pic) {
+                if(pic){
+                  console.log(pic)
+                  that.setData({
+                    imageUrl: pic.url+"?watermark/1/image/"+util.encode(options.tapImage)+"/dissolve/100/gravity/North/dx/0/dy/0",
+                    remoteUrl:pic.url,
+                  });
+                  // setTimeout(function () {
+                    setTimeout(()=>{
+                      that.setData({
+                        isShow:false,
+                      });
+                      wx.hideLoading();
+                      
+                    },500)
+                    
+                  // },500);
+                }else{
+                  that.showZanToast('上传失败，请稍后再试呢');
+                }
+              });
+          
           },
           error: function (res) {
             console.log(res)
           }
         })
       });
-     /* wx.getImageInfo({
-        src: '../../styles/4hTfDF8NTNTdSSd4KMiEbC4RfnA5Zp2N.png',
-        success: function (res) {
-          console.log(res.width)
-          console.log(res.height)
+      // wx.getImageInfo({
+      //   src: '../../styles/4hTfDF8NTNTdSSd4KMiEbC4RfnA5Zp2N.png',
+      //   success: function (res) {
+      //     console.log(res.width)
+      //     console.log(res.height)
 
-        },
-        complete: res => {
-          console.log(res);
-        }
-      })
+      //   },
+      //   complete: res => {
+      //     console.log(res);
+      //   }
+      // })
 
-*/
 
-      /*wx.showLoading({
-        title: '图片生成中',
-      })
-      upload.uploadSingleB(options.imageUrl, function (pic) {
-        if(pic){
-          that.setData({
-            imageUrl: pic.url+"?watermark/1/image/"+util.encode(options.tapImage)+"/dissolve/100/gravity/North/dx/0/dy/0"
-          });
-          setTimeout(function () {
-            wx.hideLoading();
-          },5000);
-        }else{
-          that.showZanToast('上传失败，请稍后再试呢');
-        }
-      });*/
+
+      
+      // upload.uploadSingleB(options.imageUrl, function (pic) {
+      //   if(pic){
+      //     that.setData({
+      //       imageUrl: pic.url+"?watermark/1/image/"+util.encode(options.tapImage)+"/dissolve/100/gravity/North/dx/0/dy/0"
+      //     });
+      //     setTimeout(function () {
+      //       wx.hideLoading();
+      //     },5000);
+      //   }else{
+      //     that.showZanToast('上传失败，请稍后再试呢');
+      //   }
+      // });
       wx.getSystemInfo({
         success: function (res) {
           console.log(res);
@@ -109,6 +140,8 @@ Page({
       },1000);
 
     }
+    }
+   
   },
   previewImage: function (e) {
     util.previewSingalPic(e.currentTarget.dataset.url)
@@ -198,8 +231,10 @@ Page({
   },
 
   onShareAppMessage: function () {
+    var remoteImage = this.data.remoteUrl
     return {
       title: '给你的手机换个发型吧',
+      path:"pages/image/image?remoteImage="+remoteImage
     }
   },
   tapShare:function(){

@@ -1,4 +1,5 @@
 /**app.wxss**/
+@import "./zanui-weapp/dist/index.wxss";
 .container {
   height: 100%;
   display: flex;

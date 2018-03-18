@@ -1,19 +1,52 @@
 //index.js
 //获取应用实例
 const app = getApp()
-
-Page({
+const { extend, Tab } = require('../../zanui-weapp/dist/index');
+Page(extend({}, Tab,{
   data: {
     motto: 'Hello World',
     userInfo: {},
     hasUserInfo: false,
-    canIUse: wx.canIUse('button.open-type.getUserInfo')
+    canIUse: wx.canIUse('button.open-type.getUserInfo'),
+    selectedId:"a",
+    scroll:true,
+    height:"100px",
+    tab1: {
+      list: [{
+        id: 'all',
+        title: '全部'
+      }, {
+        id: 'topay',
+        title: '待付款'
+      }, {
+        id: 'tosend',
+        title: '待发货'
+      }, {
+        id: 'send',
+        title: '待收货'
+      }, {
+        id: 'sign',
+        title: '已完成订单'
+      }],
+      selectedId: 'all'
+    },
   },
   //事件处理函数
   bindViewTap: function() {
     wx.navigateTo({
       url: '../logs/logs'
     })
+  },
+  handleZanTabChange(e) {
+    // componentId 即为在模板中传入的 componentId
+    // 用于在一个页面上使用多个 tab 时，进行区分
+    // selectId 表示被选中 tab 项的 id
+    console.log(e.selectedId)
+    var componentId = e.componentId;
+    var selectedId = e.selectedId;
+    this.setData({
+      [`${componentId}.selectedId`]: selectedId
+    });
   },
   onLoad: function () {
     if (app.globalData.userInfo) {
@@ -51,4 +84,4 @@ Page({
       hasUserInfo: true
     })
   }
-})
+}))

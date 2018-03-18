@@ -24,6 +24,7 @@ function getExtand(path = '') {
 function uploadSingleB(path, successCB) {
     var extand = getExtand(path);
     // 获取七牛上传token
+
     api.getQiniuImageTokenApi(function (token) {
         if (token) {
             // 获取图片宽高信息
@@ -31,8 +32,12 @@ function uploadSingleB(path, successCB) {
                 src: path,
                 success: function (info) {
                     // 上传图片
-                    var flie = path.split('//')[1];
+                    console.log("info",info)
+                    console.log("path",path)
+                    // var flie = path.split('//')[1];
+                    var flie = path;
                     var key = randomString(32);
+                    // console.log("file",file)
                     wx.uploadFile({
                         url: 'https://upload.qiniup.com',
                         filePath: path,
@@ -44,6 +49,7 @@ function uploadSingleB(path, successCB) {
                         },
                         // 上传成功，构造remoteUrl，回调给外面
                         success: function (remoteUrl) {
+                             
                             var aa = JSON.parse(remoteUrl.data);
                             var img_url = 'http://pics.maiyizhi.cn/';
                             img_url += aa.key;
@@ -58,6 +64,7 @@ function uploadSingleB(path, successCB) {
                             }
                         },
                         fail: function (e) {
+                            console.log(123123)
                             successCB();
                         }
                     })

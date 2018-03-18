@@ -38,16 +38,25 @@ page {
   left:50%;
   top:100rpx;
   transform:translateX(-50%);
-  width:392rpx;
-  height:840rpx;
+  width:350rpx;
+  height:780rpx;
+  /*margin-top: 100rpx*/
+}
+.cover{
+  position:absolute;
+  left:50%;
+  top:100rpx;
+  transform:translateX(-50%);
+  width:350rpx;
+  height:780rpx;
   /*margin-top: 100rpx*/
 }
 .frame{
   position:absolute;
-  left:-12.5rpx;
-  top:63rpx;
-  width:774.5rpx;
-  height:905rpx;
+  left:32rpx;
+  top:67rpx;
+  width:689rpx;
+  height:820rpx;
   border-radius: 20rpx
 }
 
