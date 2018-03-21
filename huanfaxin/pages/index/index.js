@@ -146,13 +146,18 @@ Page(extend({}, Tab, {
 
     },
     //改变系统背景图片
-    changeBgImage() {
+     changeBgImage() {
         var that = this;
 
         var index = that.data.imgIndex;
         // console.log("imgIndex"+that.data.imgIndex)
         // console.log(index)
-
+         wx.showActionSheet({
+            itemList: ['上传图片','随机来一个'],
+            success: function(res) {
+                if(res.tapIndex==0){
+                    that.onTapImage();
+                } else if(res.tapIndex ===1){
 
         if (that.data.imgIndex < 8) {
             index = that.data.imgIndex + 1;
@@ -176,8 +181,12 @@ Page(extend({}, Tab, {
                 image: "../statics/bizhi_" + index + ".jpg"
             })
         };
+                 }
+            }
+        })
 
     },
+  
   
 
     confirm() {

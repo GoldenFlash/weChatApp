@@ -1,8 +1,10 @@
 // pages/flower/flower.js
 var api = require('../../api.js');
 var Zan = require('../../zanui/index');
-var bgData = require('../../utils/data.js')
-var homePageData = require('../../utils/HomeData.js')
+var bgDataFlower = require('../../utils/dataFlower.js')
+var homePageDataFlower = require('../../utils/HomeDataFlower.js')
+var bgDataPet = require('../../utils/dataPet.js')
+var homePageDataPet = require('../../utils/HomeDataPet.js')
 var isPet = 0;
 var app = getApp();
 Page(Object.assign({}, Zan.Toast,{
@@ -34,15 +36,17 @@ Page(Object.assign({}, Zan.Toast,{
    */
   onLoad: function (options) {
 
-    console.log("options",options)
-console.log(homePageData)
+    // console.log("options",options)
+    // console.log(homePageData)
     var that = this
-
     that.setData({
-      background:bgData.data,
-      homePageData:homePageData.data,
+      deepBack:false
     })
     if (options.cart == 1) {
+      that.setData({
+        background:bgDataPet.data,
+        homePageData:homePageDataPet.data,
+      })
       isPet = 1;
       wx.setNavigationBarTitle({
         title:'宠物识别'
@@ -53,18 +57,24 @@ console.log(homePageData)
       });
       this.setData(
         {
-          imageName:'宠物识别',
-          imageContent:'地球上的纯种宠物我都认得了，发我一张试试吧',
-          imageUrl:'http://pics.maiyizhi.cn/tupianshibie_pet.png',
+          // imageName:'宠物识别',
+          // imageContent:'地球上的纯种宠物我都认得了，发我一张试试吧',
+          // imageUrl:'http://pics.maiyizhi.cn/tupianshibie_pet.png',
           color:'#f09636',
         }
       )
+    }else{
+      that.setData({
+        background:bgDataFlower.data,
+        homePageData:homePageDataFlower.data,
+      })
     }
+
+
     if (options.src !== undefined ) {
       this.setData(
         {
           isShow:true,
-          // url:options.src,
           url:getApp().globalData.localImgUrl
         }
       )
@@ -74,61 +84,73 @@ console.log(homePageData)
         duration:20000,
         icon: 'loading'
       })
-      if (options.cart == 1) {
-        api.pet(options.src,1,function (res) {
+      // if (options.cart == 1) {
 
-          wx.hideNavigationBarLoading();
-          wx.hideToast();
-          var r = res.object_list[0].label_confd * 100;
-
-          r = r.toFixed(2)
-          that.setData(
-            {
-              name:res.object_list[0].name,
-              rate:r
-            }
-          )
-        },function (res) {
-          wx.hideNavigationBarLoading();
-          wx.hideToast();
-          that.showZanToast(res);
-          setTimeout(function () {
-            that.setData({
-              isShow:false
+        wx.request({
+          url:"https://denghao.me/special/app-photo-tell/analyse.php",
+          data:{
+            path:options.src,
+            tag:"all",
+          },
+          method:"GET",
+          success(res){
+            wx.hideNavigationBarLoading();
+            wx.hideToast();
+            var data = res.data.data.detail;
+            console.log("newurl",res)
+            data.forEach((item)=>{
+              if(item.desc==null){
+                item.desc="暂无介绍"
+              }
             })
-          },2000);
+            var length = data[0].desc[0].length;
+            
+            if(length >1){
+                  wx.hideNavigationBarLoading();
+                  wx.hideToast();
+                  that.showZanToast("请上传清晰的图片");
+                  setTimeout(function () {
+                      that.setData({
+                        isShow:false,
+                        deepBack:true
+                      })
+          
+                  },2000);
+                  return;
+              }
+
+            data.forEach((item,index)=>{
+               if(index>5){
+                   var rat = that.getRandom(6);
+                   item.rat = rat;
+               }else{
+                 var rat = that.getRandom(index);
+                 item.rat = rat;
+               }
+             })
+
+            that.setData(
+              {
+                data:data,
+                deepBack:true
+              }
+            )
+            
+          },
+          fail(res){
+            wx.hideNavigationBarLoading();
+            wx.hideToast();
+            console.log()
+            that.showZanToast("请上传清晰的图片");
+            setTimeout(function () {
+                that.setData({
+                  isShow:false,
+                  deepBack:true
+                })
+            },2000);
+          
+          }
         })
-      } else {
-
-        api.flower(options.src,1,function (res) {
-          console.log("options.src",options.src)
-          console.log("res",res);
-          wx.hideNavigationBarLoading();
-          wx.hideToast();
-          var data = res.detail
-          that.setData(
-            {
-              data:data,
-              // data:newData 
-            }
-          )
-
-        },function (res) {
-          wx.hideNavigationBarLoading();
-          wx.hideToast();
-          that.showZanToast(res);
-          setTimeout(function () {
-            wx.navigateBack({
-              delta:100,
-            })
-            that.setData({
-              isShow:false
-            })
-          },2000);
-        })
-      }
-
-
     }
   },
 
@@ -156,7 +178,11 @@ console.log(homePageData)
    * 生命周期函数--监听页面卸载
    */
   onUnload: function () {
-    if(this.data.isShow==true){
+     // wx.navigateBack({
+     //    delta:100,
+     //  })
+    console.log("this.data.isShow",this.data.isShow)
+    if(this.data.deepBack==true){
       wx.navigateBack({
         delta:100,
       })
@@ -185,7 +211,7 @@ console.log(homePageData)
    */
   onShareAppMessage: function () {
     return {
-      title:'快来看看你不知道的',
+      title:'这个识别'+(isPet?'宠物品种':'花草')+'的小程序太准了',
       path: "/pages/flower/flower?cart="+isPet
     }
   },
@@ -249,6 +275,13 @@ toggleImage(){
     })
   }
  
+},
+getRandom(index){
+  var i = index+1
+  var random = Math.random();
+  var rat = (random+(10-i))*10;
+  rat = Math.floor(rat);
+  return rat;
 }
 
 }))

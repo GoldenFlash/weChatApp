@@ -3,11 +3,11 @@
     <view wx:if="{{!isShow}}" class="page-wrapper">
         <!-- style="background-color: {{color}};" -->
         <view class="page" >
-            <image class="backgroundImage" wx:for="{{background}}" src="{{item.url}}" mode="scaleToFill"></image>
+            <image class="backgroundImage" wx:for="{{background}}" wx:key="bg" src="{{item.url}}" mode="scaleToFill"></image>
         </view>
            
                 <swiper style="width:100%;height:100%" autoplay circular interval="4000">
-                    <swiper-item  class="content" wx:for="{{homePageData}}" style="width:100%;height:100%;">
+                    <swiper-item  class="content" wx:for="{{homePageData}}" wx:key="home" style="width:100%;height:100%;">
                         <view class="headerImage">
                             <image class="ellipse" src="../../image/ellipse.png"></image>
                             <view class="inner">
@@ -31,18 +31,19 @@
         
         <!-- <view wx:if="{{data}}"> -->
         <swiper class="flowerbox-wrapper" bindchange="currentChange"  circular >
-            <swiper-item wx:for="{{data}}" style="width:100px;height:100%;" class="swiperItem">
+            <swiper-item wx:for="{{data}}" wx:key="card" style="width:100px;height:100%;" class="swiperItem">
                 <scroll-view scroll-y scroll-x="false" style="height:100% ;" scroll-top="{{scrollTop}}">
                     <view style="overflow-y:visible;" style="top:{{flowerBoxTop}}">
                         <view class="flower-box">
                             <view class="title">
-                                <text>{{item.name}}</text>
+                                <view style="font-size: 50rpx;display: inline-block;">{{item.name}}</view>
+                                <view style="padding:0 10rpx;color:#E06263;display: inline-block;margin-left: 20rpx;border:solid #D1ACB0 1px; border-radius:10rpx;font-size: 25rpx;margin-top: -10rpx;height:35rpx">匹配度:{{item.rat}}%</view>
                             </view>
                             <view class="wrapper">
                                 <image class="image" src='{{item.img}}'></image>
-                                <text class="text">{{item.desc}}</text>
+                                <text class="text" style="margin-top: 20rpx">{{item.desc}}</text>
                             </view>
-                            <view class="meitu-wrapper">
+                            <view class="meitu-wrapper" wx:if="{{item.imgs}}">
                                 <view class="title">美图</view>
                                 <view class="image">
                                     <image wx:for="{{item.imgs}}" src="{{item.smallImg}}" hidden="{{index > imgNumber}}"></image>

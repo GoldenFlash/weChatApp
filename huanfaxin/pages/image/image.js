@@ -57,28 +57,25 @@ Page({
               url: res.tempFilePath,
               canvasHidden:true,
             })
-              
-             upload.uploadSingleB(res.tempFilePath, function (pic) {
-                if(pic){
-                  console.log(pic)
-                  that.setData({
-                    imageUrl: pic.url+"?watermark/1/image/"+util.encode(options.tapImage)+"/dissolve/100/gravity/North/dx/0/dy/0",
-                    remoteUrl:pic.url,
-                  });
-                  // setTimeout(function () {
-                    setTimeout(()=>{
-                      that.setData({
-                        isShow:false,
-                      });
-                      wx.hideLoading();
-                      
-                    },500)
-                    
-                  // },500);
-                }else{
-                  that.showZanToast('上传失败，请稍后再试呢');
-                }
+            setTimeout(()=>{
+              that.setData({
+                isShow:false,
               });
+              wx.hideLoading();
+              
+            },500)
+              
+             // upload.uploadSingleB(res.tempFilePath, function (pic) {
+             //    if(pic){
+             //      console.log(pic)
+             //      that.setData({
+             //        imageUrl: pic.url+"?watermark/1/image/"+util.encode(options.tapImage)+"/dissolve/100/gravity/North/dx/0/dy/0",
+             //        remoteUrl:pic.url,
+             //      });
+             //    }else{
+             //      that.showZanToast('上传失败，请稍后再试呢');
+             //    }
+             //  });
           
           },
           error: function (res) {
@@ -234,7 +231,7 @@ Page({
     var remoteImage = this.data.remoteUrl
     return {
       title: '给你的手机换个发型吧',
-      path:"pages/image/image?remoteImage="+remoteImage
+      path:"pages/index/index",
     }
   },
   tapShare:function(){

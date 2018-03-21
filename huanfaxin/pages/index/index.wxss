@@ -109,7 +109,7 @@ page{
   position:absolute;
   width:100%;
   bottom:0; 
-  height:300rpx;
+  height:220rpx;
   
 }
 .hair-wrap .wrap .image{
@@ -181,7 +181,7 @@ page{
   /*text-align: center;*/
   /*margin:0 auto;*/
   position:fixed;
-  bottom:10rpx;
+  bottom:15rpx;
   font-size:50rpx;
   left:50%;
   transform: translateX(-50%);

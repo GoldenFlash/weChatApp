@@ -48,16 +48,16 @@
         </view>
     </view>
     <view class="hair-wrap" wx:if="{{changeHair}}" catchtap="showHair">
-        <view class="wrap" catchtap="stop">
+        <view class="wrap" catchtap="stop" >
             <view style="display:flex">
                 <!-- <view class="cancel">X</view> -->
-                <view class="title">
+                <view class="title" style="box-shadow: 1px 1px 5px rgba(0, 0, 0, .3);width:100%">
                     <template is="zan-tab" data="{{ ...tab1, componentId: 'tab1' }}"></template>
                 </view>
             </view>
             <view class="image" style="width:100%">
-                <scroll-view scroll-x style='height:150px;width:100%;'>
-                    <view style='height:150px;width:100%;padding-left:8px'>
+                <scroll-view scroll-x style='height:300rpx;width:100%;'>
+                    <view style='height:300rpx;width:100%;padding-left:8px'>
                       <view wx:for="{{datas}}" wx:key="index" data-index="{{index}}" class='figure' catchtap="tapFigure">
                           <image src="{{item.url}}"></image>
 
@@ -67,7 +67,7 @@
                    </view>
               </scroll-view>
             </view>
-            <image src="../statics/close.svg" class="close" catchtap="showHair"></image>
+            <!-- <image src="../statics/close.svg" class="close" catchtap="showHair"></image> -->
             
         </view>
     </view>

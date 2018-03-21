@@ -409,7 +409,7 @@ function flower(originalUrl, modelType, successCB, failCB) {
     }, successCB, failCB);
 }
 function pet(originalUrl, modelType,successCB, failCB) {
-  system.myRequest('https://'+utils.randdomDomain()+'.maiyizhi.cn/producter/php/frontend/web/index.php?r=distinguishPic/default/response',
+  system.myRequest('https://' + utils.randdomDomain() +'.maiyizhi.cn/producter/php/frontend/web/index.php?r=distinguishPic/default/response',
     {
       path: originalUrl,
     }, successCB, failCB);

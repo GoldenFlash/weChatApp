@@ -48,6 +48,7 @@ Page(Object.assign({}, Zan.Toast, {
             duration:20000,
             icon: 'loading'
           })
+
           upload.uploadSingleB({path: src, state: 1}, function (pic) {
             console.log(pic)
             if(pic){
@@ -58,7 +59,7 @@ Page(Object.assign({}, Zan.Toast, {
                 duration:20000,
                 icon: 'loading'
               })
-
+              // console.log(pic.url)
               switch (parseInt(source)) {
                 case 1: api.bianLian(pic.url, model, function(res) {
                   wx.hideNavigationBarLoading();
@@ -127,6 +128,9 @@ Page(Object.assign({}, Zan.Toast, {
               that.showZanToast('上传失败，请稍后再试呢');
             }
           });
+
+
+
         }
       } else {
         console.log('获取图片失败，请稍后重试')
