@@ -1,90 +1,163 @@
 const app = getApp()
-
+const api = require("../../api.js")
 Page({
     data: {
         user_avatar: 'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83ephM5MKRNqiaJHykaMBOpicBDZLt45lMPNEFaxFjvKxm0EwuW44c3N5OcaxjuoNcTfJuj2qkdoicwGBA/0',
-        steps_rank_list: [{
-                name: '汪淼',
-                steps: 15000,
-                likes: 20,
-                liked: true
-            },
-            {
-                name: '叶文洁',
-                steps: 13000,
-                likes: 0,
-                liked: false
-            },
-            {
-                name: '章北海',
-                steps: 11000,
-                likes: 1,
-                liked: true
-            },
-            {
-                name: '罗辑',
-                steps: 9000,
-                likes: 5,
-                liked: false
-            },{
-                name: '罗辑',
-                steps: 9000,
-                likes: 5,
-                liked: false
-            },{
-                name: '罗辑',
-                steps: 9000,
-                likes: 5,
-                liked: false
-            },{
-                name: '罗辑',
-                steps: 9000,
-                likes: 5,
-                liked: false
-            },{
-                name: '罗辑',
-                steps: 9000,
-                likes: 5,
-                liked: false
-            },{
-                name: '罗辑',
-                steps: 9000,
-                likes: 5,
-                liked: false
-            },{
-                name: '罗辑',
-                steps: 9000,
-                likes: 5,
-                liked: false
-            },{
-                name: '罗辑',
-                steps: 9000,
-                likes: 5,
-                liked: false
-            },{
-                name: '罗辑',
-                steps: 9000,
-                likes: 5,
-                liked: false
-            },
-            {
-                name: '史强',
-                steps: 7000,
-                likes: 0,
-                liked: false
-            },
-            {
-                name: '维德',
-                steps: 5000,
-                likes: 2,
-                liked: false
-            },
-            {
-                name: '云天明',
-                steps: 3000,
-                likes: 0,
-                liked: false
-            },
-        ],
-    }
+        // rankList:[
+        //     {
+        //         todayRanks:5900,
+        //         user:{
+        //             avatar:'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83ephM5MKRNqiaJHykaMBOpicBDZLt45lMPNEFaxFjvKxm0EwuW44c3N5OcaxjuoNcTfJuj2qkdoicwGBA/0',
+        //             name:"sliderwater"
+        //         },
+        //     },
+        //      {
+        //         todayRanks:4900,
+        //         user:{
+        //             avatar:'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83ephM5MKRNqiaJHykaMBOpicBDZLt45lMPNEFaxFjvKxm0EwuW44c3N5OcaxjuoNcTfJuj2qkdoicwGBA/0',
+        //             name:"sliderwater"
+        //         },
+        //     },
+        //      {
+        //         todayRanks:4700,
+        //         user:{
+        //             avatar:'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83ephM5MKRNqiaJHykaMBOpicBDZLt45lMPNEFaxFjvKxm0EwuW44c3N5OcaxjuoNcTfJuj2qkdoicwGBA/0',
+        //             name:"sliderwater"
+        //         },
+        //     },
+        //      {
+        //         todayRanks:6400,
+        //         user:{
+        //             avatar:'https://wx.qlogo.cn/mmopen/vi_32/DYAIOgq83ephM5MKRNqiaJHykaMBOpicBDZLt45lMPNEFaxFjvKxm0EwuW44c3N5OcaxjuoNcTfJuj2qkdoicwGBA/0',
+        //             name:"sliderwater"
+        //         },
+        //     },
+        // ],
+        rankList: "",
+        userInfo: "",
+        selfRank: "",
+    },
+    onShareAppMessage: function() {
+        return {
+            path: "pages/rankingList/rankingList",
+            success(res) {
+
+                console.log("res.shareTickets[0]")
+                console.log(res.shareTickets[0])
+            }
+        }
+    },
+    onLoad: function(options) {
+        console.log("listoptions", options)
+        var that = this;
+
+        wx.getUserInfo({
+            success(res) {
+                console.log("loadasda", res)
+                that.setData({
+                    userInfo: res.userInfo
+                })
+            }
+        })
+        console.log(123123)
+    },
+    onShow() {
+        var that = this;
+        
+
+
+        var opts = app.globalData.opts;
+        api.login(function(res) {
+            var userInfo = res;
+            console.log("login", userInfo)
+            console.log("scene", opts)
+            wx.showLoading({
+              title: '加载中',
+            })
+            if (opts.scene == 1044) {
+                console.log(opts.shareTicket)
+
+                wx.login({
+                    success(res) {
+                        var js_code = res.code;
+
+                        wx.getShareInfo({
+                            shareTicket: opts.shareTicket,
+                            complete(res) {
+                                console.log("getTicket", res)
+                                console.log(res.iv)
+                                var share_info_encryptedData = res.encryptedData;
+                                var share_info_iv = res.iv;
+                                console.log("share_info", res)
+                                wx.getWeRunData({
+                                    success(res) {
+                                        console.log("getWeRunData", res)
+                                        var run_data_encryptedData = res.encryptedData;
+                                        var run_data_iv = res.iv;
+                                        wx.request({
+                                            url: "https://ai.maiyizhi.cn/producter/php/frontend/web/index.php?r=steps/default/index",
+                                            method: "POST",
+                                            data: {
+                                                js_code: js_code,
+                                                share_info_encryptedData: share_info_encryptedData,
+                                                share_info_iv: share_info_iv,
+                                                openid: userInfo.openid,
+                                                name: userInfo.user_name,
+                                                avatar: userInfo.avatar,
+                                                run_data_encryptedData: run_data_encryptedData,
+                                                run_data_iv: run_data_iv,
+
+                                            },
+                                            header: {
+                                                'content-type': 'application/json' // 默认值
+                                            },
+                                            success: function(res) {
+                                                console.log("qun", res)
+                                                var obj = res.data.data.group_ranks;
+                                                var users = obj.users;
+                                                var rankList = [];
+                                                var selfRank = {
+                                                    user_rank: res.data.data.user_rank,
+                                                    user_steps: res.data.data.user_steps
+                                                }
+                                               
+                                                for (var key in users) {
+                                                    var newObj = {
+                                                        user: users[key],
+                                                        todayRanks: obj["today_ranks"][key],
+                                                    }
+                                                    rankList.push(newObj);
+                                                }
+                                                console.log("rankList", rankList)
+                                               
+
+                                                if (rankList) {
+                                                    rankList.sort((a, b) => {
+                                                        return b.todayRanks - a.todayRanks
+                                                    })
+                                                    that.setData({
+                                                        rankList: rankList,
+                                                        selfRank: selfRank
+                                                      
+                                                    })
+
+                                                    // console.log("onload2", that.data.rankList)
+                                                }
+                                                wx.hideLoading()
+                                            },
+                                            fail(res) {
+                                                console.log("fail")
+                                            }
+                                        })
+
+                                    }
+                                })
+
+                            }
+                        })
+                    }
+                })
+            }
+        });
+    },
 })

@@ -1,4 +1,5 @@
 <view class="page">
+  <image class="rankBg" src="../../static/rankBg.jpg"></image>
   <view class="page-top">
     <view class="color-lump"></view>
 
@@ -11,14 +12,14 @@
         </view>
       </view>
       <!-- 今日步数 -->
-      <view class="user-card-info steps-today">
+      <view class="user-card-info steps-today" wx:if="{{userStep}}">
         <view class="user-card-info-title">今日步数</view>
-        <view class="user-card-info-content">5000 步</view>
+        <view class="user-card-info-content" style="color:#5898F1">{{userStep["today-steps"]}} 步</view>
       </view>
       <!-- 本周封面 -->
-      <view class="user-card-info top-this-week">
+      <view class="user-card-info top-this-week" wx:if="{{userStep}}">
         <view class="user-card-info-title">本周封面</view>
-        <view class="user-card-info-content">3 次</view>
+        <view class="user-card-info-content" style="color:#5898F1">{{userStep.user["champions_count"]}} 次</view>
       </view>
  
     </view>
