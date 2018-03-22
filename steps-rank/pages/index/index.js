@@ -113,10 +113,12 @@ Page({
                                 },
                                 success: function(res) {
                                     console.log("werun", res)
-                                    that.setData({
-                                        userStep:res.data.data
-                                    })
-                                    wx.hideLoading()
+                                    if(res){
+                                        that.setData({
+                                            userStep:res.data.data
+                                        })
+                                        wx.hideLoading()
+                                    }
                                 },
                                 fail(res) {
                                     console.log("fail")

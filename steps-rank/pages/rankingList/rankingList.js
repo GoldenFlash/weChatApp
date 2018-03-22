@@ -51,6 +51,9 @@ Page({
         console.log("listoptions", options)
         var that = this;
 
+        wx.showShareMenu({
+            withShareTicket: true
+        })
         wx.getUserInfo({
             success(res) {
                 console.log("loadasda", res)
@@ -63,16 +66,17 @@ Page({
     },
     onShow() {
         var that = this;
-        
-
-
         var opts = app.globalData.opts;
+        if(!this.data.rankList){
+            wx.showLoading({
+              title: '加载中',
+            })
         api.login(function(res) {
             var userInfo = res;
             console.log("login", userInfo)
             console.log("scene", opts)
-            wx.showLoading({
-              title: '加载中',
+            that.setData({
+                myOpenid:userInfo.openid
             })
             if (opts.scene == 1044) {
                 console.log(opts.shareTicket)
@@ -113,6 +117,7 @@ Page({
                                             },
                                             success: function(res) {
                                                 console.log("qun", res)
+                                                if(res.data){
                                                 var obj = res.data.data.group_ranks;
                                                 var users = obj.users;
                                                 var rankList = [];
@@ -122,11 +127,17 @@ Page({
                                                 }
                                                
                                                 for (var key in users) {
+
                                                     var newObj = {
                                                         user: users[key],
                                                         todayRanks: obj["today_ranks"][key],
+                                                        key:key
                                                     }
                                                     rankList.push(newObj);
+
+                                                    
+
+
                                                 }
                                                 console.log("rankList", rankList)
                                                
@@ -135,15 +146,22 @@ Page({
                                                     rankList.sort((a, b) => {
                                                         return b.todayRanks - a.todayRanks
                                                     })
+                                                    rankList.forEach((item,index)=>{
+                                                        if(item.key == userInfo.openid){
+                                                            item.index = index
+                                                            selfRank = item
+                                                        }
+                                                    })
                                                     that.setData({
                                                         rankList: rankList,
                                                         selfRank: selfRank
                                                       
                                                     })
-
+                                                    console.log("selfRank",selfRank)
                                                     // console.log("onload2", that.data.rankList)
                                                 }
                                                 wx.hideLoading()
+                                            }
                                             },
                                             fail(res) {
                                                 console.log("fail")
@@ -159,5 +177,6 @@ Page({
                 })
             }
         });
-    },
+    }},
+
 })
