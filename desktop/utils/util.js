@@ -1052,7 +1052,7 @@ class toucheAction {
 
     let elementSize = this.calculateW_H(contentItem[selectedIndex]);
     let multiple = elementSize.w / contentItem[selectedIndex].original_w;
-    if (multiple <= 0.5) {
+    if (multiple <= 0.3) {
       this.scaleSmall = 0;
     }
   }

@@ -8,8 +8,9 @@ import { $wuxNotification } from '../../../wux/wux'
 var tips_name = 'has_show_avatar_tiaozhuan_tip'
 
 var deviceWidth = app.globalData.system_info.windowWidth
+var deviceHeight = app.globalData.system_info.windowHeight
 var radio = deviceWidth / 375 * 0.5; //相对于iPhone 屏幕宽度的比例
-var size = { width: 0.9 * deviceWidth / radio, height: 0.9 * deviceWidth / radio };
+var size = { width: 1 * deviceWidth / radio, height: 1 * deviceWidth / radio };
 var contentItem = []
 var imageUrls = []
 var toucheAction
@@ -23,13 +24,15 @@ Page(Object.assign({}, Zan.Toast, {
     data: {
         
         showDialog: false,
-        avatarCanvasWidth: 0.9 * deviceWidth,
+        avatarCanvasWidth: 1 * deviceWidth,
+        avatarCanvasHeight:0.9 * deviceWidth,
         // urls:iconCat,
         backgroundSrc: '',
         isClip: !true,
         showAvatars: !false,
         isCircle: false,
         animationData: {},
+        deskSelect:"",
         // cropperOpt: {
         //   id: 'clip',
         //   width: deviceWidth,
@@ -65,6 +68,7 @@ Page(Object.assign({}, Zan.Toast, {
     },
     toggleDialog: function() {
         var that = this;
+        this.bgAnimation(0);
         this.setData({
             showDialog: !this.data.showDialog
         });
@@ -77,8 +81,8 @@ Page(Object.assign({}, Zan.Toast, {
             decoreate:e.target.dataset.list
             // iconList: iconData[e.target.dataset.index].list
         })
-
-        this.toggleDialog()
+        this.toggleDialog();
+        this.bgAnimation(-25)
     },
     avatarBtn: function(e) {
         this.setData({
@@ -87,7 +91,7 @@ Page(Object.assign({}, Zan.Toast, {
     },
     onShow: function() {
         var animation = wx.createAnimation({
-            duration: 500,
+            duration: 100,
             timingFunction: "linear",
             transformOrigin: "50% 50%",
         })
@@ -125,11 +129,21 @@ Page(Object.assign({}, Zan.Toast, {
         //         imageUrls.push(defaultbg);
         //     }
         // }
+        var desk1 = data.desk[0].url;
 
         that.setData({
           deskList:data.desk,
           listTitle:data.decoreate,
+          backgroundSrc: desk1,
+          deskSelect:0
         })
+        
+        if (imageUrls.length) {
+            imageUrls[imageUrls.length - 1] = desk1;
+        } else {
+            imageUrls.push(desk1);
+        }
+
         if (option.src !== undefined) {
             const src = option.src;
             if (option.from == 'koutu') {
@@ -211,9 +225,7 @@ Page(Object.assign({}, Zan.Toast, {
     bgAnimation(value) {
         var that = this;
 
-        this.animation.translateY(value).step({
-            duration: 100
-        })
+        this.animation.translateY(value).step()
         this.setData({
             animationData: that.animation.export()
         })
@@ -230,27 +242,12 @@ Page(Object.assign({}, Zan.Toast, {
         const src = event.currentTarget.dataset.src;
         this.setData({
             backgroundImages: src,
-            avatarHidden: true
+            avatarHidden: true,
+
         })
         this.bgAnimation(-25)
     },
 
-    // onHide: function () {
-    //   contentItem = [];
-    //   if (this.data.backgroundSrc) {
-    //     imageUrls.splice(0, imageUrls.length - 1);
-    //   } else {
-    //     imageUrls = [];
-    //   }
-    //   toucheAction = new util.toucheAction({
-    //     canvasId: "avatar",
-    //     contentItem: contentItem,
-    //     size: size,
-    //     radio: radio,
-    //     imageUrls: imageUrls
-    //   });
-    //   toucheAction.drawElements();
-    // },
 
     onUnload: function() {
         contentItem = [];
@@ -278,9 +275,12 @@ Page(Object.assign({}, Zan.Toast, {
     // },
 
     selectDesk: function(event) {
+        console.log(event)
         const src = event.currentTarget.dataset.url;
+        const index = event.currentTarget.dataset.index;
         this.setData({
-            backgroundSrc: src
+            backgroundSrc: src,
+            deskSelect:index,
         })
         if (imageUrls.length) {
             imageUrls[imageUrls.length - 1] = src;
@@ -292,6 +292,11 @@ Page(Object.assign({}, Zan.Toast, {
       this.setData({
         hasChooseDesk:true
       })
+    },
+    backTodesk(){
+        this.setData({
+            hasChooseDesk:false
+        })
     },
 
     uploadBackgroundImage: function() {
@@ -317,6 +322,7 @@ Page(Object.assign({}, Zan.Toast, {
     selectAvatar: function(event) {
         const that = this;
         that.toggleDialog();
+        this.bgAnimation(0);
         // wx.showNavigationBarLoading();
         // wx.showToast({
         //   title: 'Loading……',
@@ -374,17 +380,7 @@ Page(Object.assign({}, Zan.Toast, {
         toucheAction.touchStart(event);
     },
 
-    // changeSqu: function (e) {
-    //   this.setData({
-    //     isCircle: false
-    //   })
-    // },
-
-    // changeCircle: function (e) {
-    //   this.setData({
-    //     isCircle: true
-    //   })
-    // },
+ 
 
     changeBackground: function() {
         this.setData({
@@ -438,128 +434,6 @@ Page(Object.assign({}, Zan.Toast, {
                 }
             })
         }, 50);
-
-        // wx.canvasToTempFilePath({
-        //   canvasId: 'avatar',
-        //   success: function (file) {
-        //     wx.showActionSheet({
-        //       itemList: ['方形头像', '圆形头像'],
-        //       success: function(res) {
-        //         contentItem = [];
-        //         imageUrls.splice(0, imageUrls.length - 1);
-        //         toucheAction = new util.toucheAction({
-        //           canvasId: "avatar",
-        //           contentItem: contentItem,
-        //           size: size,
-        //           radio: radio,
-        //           imageUrls: imageUrls
-        //         });
-        //         toucheAction.drawElements(false);
-        //         if(res.tapIndex==0){
-        //
-        //           util.showPreviewTip(tips_name,'长按保存头像哦',file.tempFilePath)
-        //
-        //           /*wx.saveImageToPhotosAlbum({
-        //             filePath: file.tempFilePath,
-        //             success: function () {
-        //               wx.showToast({
-        //                 title: '头像已经保存到您的相册了',
-        //                 icon: 'success',
-        //                 duration: 2000
-        //               })
-        //               contentItem = [];
-        //               imageUrls.splice(0, imageUrls.length - 1);
-        //               toucheAction = new util.toucheAction({
-        //                 canvasId: "avatar",
-        //                 contentItem: contentItem,
-        //                 size: size,
-        //                 radio: radio,
-        //                 imageUrls: imageUrls
-        //               });
-        //               toucheAction.drawElements();
-        //
-        //             }
-        //           })*/
-        //         }else if(res.tapIndex==1){
-        //           wx.showNavigationBarLoading()
-        //           wx.showToast({
-        //             title: 'Loading……',
-        //             duration:2000,
-        //             icon: 'loading'
-        //           })
-        //           upload.uploadSingleB({path: file.tempFilePath, state: 1}, function (pic) {
-        //             if(pic){
-        //               console.log(pic.url+'?roundPic/radius/'+pic.width)
-        //               util.showPreviewTip(tips_name,'长按保存头像哦',pic.url+'?roundPic/radius/'+pic.width);
-        //
-        //               //that.data.files[that.data.files.length-localPics.length] = {"url":pic.url,"width":pic.width,"height":pic.height}
-        //               /*wx.saveImageToPhotosAlbum({
-        //                 filePath: util.replaceQiniuHttps(pic.url)+'?roundPic/radius/50',
-        //                 success: function (dd) {
-        //                   console.log(dd)
-        //                   wx.showToast({
-        //                     title: '头像已经保存到您的相册了',
-        //                     icon: 'success',
-        //                     duration: 2000
-        //                   })
-        //                   contentItem = [];
-        //                   imageUrls.splice(0, imageUrls.length - 1);
-        //                   toucheAction = new util.toucheAction({
-        //                     canvasId: "avatar",
-        //                     contentItem: contentItem,
-        //                     size: size,
-        //                     radio: radio,
-        //                     imageUrls: imageUrls
-        //                   });
-        //                   toucheAction.drawElements();
-        //                   wx.hideToast()
-        //                   wx.hideNavigationBarLoading();
-        //                 }
-        //               })*/
-        //
-        //             }else{
-        //               that.showZanToast('上传失败，请稍后再试呢');
-        //             }
-        //           });
-        //         }
-        //       },
-        //       fail: function(res) {
-        //       }
-        //     })
-        //   }
-        // })
-        // if(wx.saveImageToPhotosAlbum) {
-        //   wx.saveImageToPhotosAlbum({
-        //     filePath: file.tempFilePath,
-        //     success: function (res) {
-        //       wx.showToast({
-        //         title: '保存到相册啦',
-        //         icon: 'success',
-        //         duration: 2000
-        //       })
-        //       //that.showZanToast('保存到相册啦');
-        //     },
-        //     fail: function (res) {
-        //       console.log(res)
-        //       wx.authorize({
-        //         scope: 'scope.writePhotosAlbum',
-        //         success: function (res) {
-        //           console.log(res)
-        //         },
-        //         error: function (res) {
-        //           util.previewSingalPic(file.tempFilePath)
-        //           console.log(res)
-        //         },
-        //         fail: function (res) {
-        //           util.previewSingalPic(file.tempFilePath)
-        //           console.log(res)
-        //         }
-        //       })
-        //     }
-        //   })
-        // }else{
-        //   util.previewSingalPic(file.tempFilePath)
-        // }
     },
 
     nextStep: function() {

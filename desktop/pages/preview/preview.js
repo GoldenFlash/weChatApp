@@ -2,8 +2,12 @@ var util = require('../../utils/util.js')
 var app = getApp()
 var Zan = require('../../zanui/index');
 var b_height=300;//按钮高度
-var width;//图片宽度  rpx
-var height;//图片高度  rpx
+const device = wx.getSystemInfoSync() // 获取设备信息
+var deviceWidth = app.globalData.system_info.windowWidth // 示例为一个与屏幕等宽的正方形裁剪框
+var deviceHeight = app.globalData.system_info.windowHeight
+const height = device.windowHeight
+// var width;//图片宽度  rpx
+// var height;//图片高度  rpx
 var pic;
 var title;
 var path;
@@ -13,12 +17,13 @@ Page(Object.assign({}, Zan.Toast, {
   },
   save:function (e) {
     console.log("e",e);
+    var lastImage = this.data.url
     let formId = e.detail.formId;
     util.dealFormIds(formId);
     var that = this
     if (wx.saveImageToPhotosAlbum) {
       wx.saveImageToPhotosAlbum({
-        filePath: pic,
+        filePath:lastImage,
         success: function (res) {
           wx.showToast({
             title: '保存到相册啦',
@@ -49,7 +54,8 @@ Page(Object.assign({}, Zan.Toast, {
     }
   },
   preview:function (e) {
-    util.previewSingalPic(pic);
+    var previewImage = this.data.url
+    util.previewSingalPic(previewImage);
   },
   onShareAppMessage: function () {
     return {
@@ -69,6 +75,84 @@ Page(Object.assign({}, Zan.Toast, {
     let formId = e.detail.formId;
     util.dealFormIds(formId);
   },
+concact(){
+  console.log(12312312)
+  var that =this;
+    
+
+    var deskurl = this.data.pic_url;
+    console.log("deskUrl",deskurl)
+    // var share = this.data.tempFilePath
+    var image = '../../images/WechatIMG103.jpeg' 
+     const ctx = wx.createCanvasContext('demo');
+      ctx.drawImage(deskurl, 0,deviceHeight*0.15,deviceWidth, deviceHeight*0.5);
+      ctx.drawImage(image, 0,deviceHeight*0.65,deviceWidth, deviceHeight*0.12);
+      // ctx.drawImage(image, width*0.8,height*0.85,width*0.2, width*0.2);
+      // ctx.drawImage()
+      ctx.draw('',res => {
+        wx.canvasToTempFilePath({
+          destWidth:deviceWidth,
+          destHeight:deviceHeight,
+          canvasId: 'demo',
+          success: function(res) {
+            console.log("tempFilePath",res.tempFilePath)
+
+            that.setData({
+              
+              canvasHidden:true,
+              url: res.tempFilePath,
+            })
+            // setTimeout(()=>{
+            //   that.setData({
+            //     isShow:false,
+            //   });
+            //   wx.hideLoading();
+              
+            // },500)
+          
+          },
+          error: function (res) {
+            console.log(res)
+          }
+        })
+      });
+
+},
+
+drawShare(){
+  var that = this;
+  
+    const ctx = wx.createCanvasContext('share')
+    console.log("width",width)
+    ctx.setFontSize(18)
+    ctx.fillText('我的工位,桌上有刀,桌下有猫', 10, 20)
+    ctx.setFontSize(15)
+    ctx.fillText('扫码定制你的理想工位', 10, 40)
+    // ctx.drawImage(image, width*0.8, 10, 50, 50)
+    ctx.draw()
+    wx.canvasToTempFilePath({
+        x: 0,
+        y: 0,
+        width:width,
+        height: 50,
+        destWidth: width,
+        // destHeight: 50,
+        canvasId: 'share',
+        success: function(res) {
+          console.log("tempFilePath",res.tempFilePath)
+          that.setData({
+            tempFilePath:res.tempFilePath,
+            shareHidden:true
+          })
+          that.concact()
+        },
+        fail(){
+          console.log("fail")
+        } 
+      })
+},
+
+
   onLoad: function (options) {
     app.globalData.system_info = wx.getSystemInfoSync()
     var that = this;
@@ -88,15 +172,22 @@ Page(Object.assign({}, Zan.Toast, {
         //   height=res.height;
         // }else{
         // }
-        height = widow_height-b_height;
-        width = res.width/res.height*(height);
+        // height = widow_height-b_height;
+        // width = res.width/res.height*(height);
 
         that.setData({
           pic_url:pic,
-          height:height,
-          width:width,
+          // height:height,
+          // width:width,
         })
+        // that.drawShare()
+        that.concact();
+        
       }
     })
+    
+
   }
+
+
 }));

@@ -212,6 +212,15 @@ swiper {
   justify-content: space-between;
   padding:0 20rpx;
 }
+.mainBox .desk-wrapper .selected{
+  position:absolute;
+  left:-5rpx;
+  height:120rpx;
+  width:210rpx;
+  bottom:00rpx;
+  border:solid #1aac19 1px;
+  text-align: right;
 
+}
 
 

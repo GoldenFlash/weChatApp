@@ -1,7 +1,13 @@
 <import src="/zanui/toast/index.wxml" />
+  
 <view class="container page__bd" style="position: relative;">
     <view class="flex_row_center">
-        <image lazyload="true" bindtap="preview" mode="aspectFit" src="{{pic_url}}" style="width:{{width}}rpx;max-width:750rpx;height: {{height}}rpx;margin:0 {{margin}}rpx;margin-top: 30rpx;"></image>
+            <!-- <canvas  style='width:750rpx;height:10vh; {{shareHidden === true ? "width:0px;height:0px;border:0 solid rgb(25, 173, 25);":""}};' canvas-id="share" >
+            </canvas>  -->
+            <canvas data-url='{{url}}' style='width:750rpx;height:80vh; {{canvasHidden === true ? "width:0px;height:0px;border:0 solid rgb(25, 173, 25);":""}};' canvas-id="demo" >
+            </canvas> 
+        <image hidden="{{!canvasHidden}}" lazyload="true" bindtap="preview" mode="aspectFill" src="{{pic_url}}" style="width:750rpx;max-width:750rpx;height:70vh;margin-top: 70rpx;"></image>
+        <!-- <image src="{{tempFilePath}}" style="" mode="aspectFit"></image> -->
     </view>
     <view style="margin-top: 30rpx;height: 230rpx;">
         <form bindsubmit="save" report-submit="true">

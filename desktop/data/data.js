@@ -1,7 +1,7 @@
 var desk = [
-	{url:"../../../images/iconDesk/desk1.png"},
-	{url:"../../../images/iconDesk/desk2.png"},
-	{url:"../../../images/iconDesk/desk3.png"},
+	{url:"../../../images/iconDesk/WechatIMG76.jpeg"},
+	{url:"../../../images/iconDesk/WechatIMG77.jpeg"},
+	{url:"../../../images/iconDesk/WechatIMG78.jpeg"},
 ];
 var decoreate = [
 	{
