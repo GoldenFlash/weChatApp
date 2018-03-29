@@ -19,22 +19,20 @@
         </view> -->
     <!-- </view> -->
     <!-- 头像动作画布 -->
-    <view style="position:relative;margin-top:9%;">
-        <image src="{{backgroundSrc}}" style="width:100%;height:{{avatarCanvasHeight}}px;{{isCircle?'border-radius: 50%;':''}}margin: 0 auto;display: block;"></image>
-        <canvas disable-scroll="true" canvas-id="avatar" bindtouchmove="avatarTouchMove" bindtouchstart="avatarTouchStart" bindtouchend="avatarTouchEnd" style="width:{{avatarCanvasWidth}}px;height:{{avatarCanvasHeight}}px;position: absolute;top:0;left: 0;background-color:transparent;">
-        </canvas>
+    <view style="position:relative;">
+        <image src="{{backgroundSrc}}" style="width:{{avatarCanvasWidth}}px;height:{{avatarCanvasHeight}}px;margin: 0 auto;display: block;"></image>
+        <canvas disable-scroll="true" canvas-id="avatar" bindtouchmove="avatarTouchMove" bindtouchstart="avatarTouchStart" bindtouchend="avatarTouchEnd" style="width:{{avatarCanvasWidth}}px;height:{{avatarCanvasHeight}}px;position: absolute;top:0;left: 50%;transform: translateX(-50%);background-color:transparent;"></canvas>
     </view>
 
     <!-- 第一步显示 -->
-    <view wx:if="{{!hasChooseDesk}}" style="height:400rpx">
+    <view wx:if="{{!hasChooseDesk}}">
       <scroll-view >
         <view class = "desk-wrapper">
           <view wx:for="{{deskList}}" wx:key="desk" data-url="{{item.url}}" data-index="{{index}}" catchtap="selectDesk" style = "position:relative">
-            <image src="{{item.url}}" style="width:200rpx;height:200rpx"></image>
+            <image src="{{item.min}}" style="width:200rpx;height:200rpx"></image>
             <view hidden="{{deskSelect != index}}" class="selected">
                 <image src="../../../styles/sq-checked.svg" style="width:50rpx;height:50rpx"></image>
             </view>
-            
           </view>
         </view>
       </scroll-view>

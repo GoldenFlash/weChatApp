@@ -31,7 +31,7 @@
             <button class="share" open-type="share" wx:if="{{!onTape}}">分享</button>
             <view class="" wx:if="{{!onTape}}">
                 <view class="button">
-                    <button catchtap="cancel" style="border:none;">取消</button>
+                    <button catchtap="cancel" type="primary" style="border:none;">取消</button>
                     <button style="border:none" catchtap="goPreview">预览</button>         
                 </view>
             </view>

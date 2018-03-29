@@ -1,14 +1,15 @@
 /**demo.wxss**/
 .mainBox {
-  position: relative;
+  /* position: relative; */
+  height: 100vh;
+  overflow: scroll;
 }
 
-page {
+/* page {
   height: 100%;
   background-color: #f8f8f8;
   overflow: scroll;
-
-}
+} */
 
 .cropper-wrapper {
   height: 100%;
@@ -49,11 +50,6 @@ page {
   width: 100%;
   margin-top: 40rpx;
   text-align: center;
-}
-
-.mainBox {
-  position: relative;
-  height: 100vh;
 }
 
 .weui-grid {
@@ -222,5 +218,3 @@ swiper {
   text-align: right;
 
 }
-
-

@@ -1,7 +1,16 @@
 var desk = [
-	{url:"../../../images/iconDesk/WechatIMG76.jpeg"},
-	{url:"../../../images/iconDesk/WechatIMG77.jpeg"},
-	{url:"../../../images/iconDesk/WechatIMG78.jpeg"},
+	{
+		url:"../../../images/iconDesk/WechatIMG76.jpeg",
+		min:"../../../images/iconDesk/desk1.png"
+	},
+	{
+		url:"../../../images/iconDesk/WechatIMG77.jpeg",
+		min:"../../../images/iconDesk/desk2.png"
+	},
+	{
+		url:"../../../images/iconDesk/WechatIMG78.jpeg",
+		min:"../../../images/iconDesk/desk3.png"
+	},
 ];
 var decoreate = [
 	{

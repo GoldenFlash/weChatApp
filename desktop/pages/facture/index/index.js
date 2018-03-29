@@ -9,8 +9,10 @@ var tips_name = 'has_show_avatar_tiaozhuan_tip'
 
 var deviceWidth = app.globalData.system_info.windowWidth
 var deviceHeight = app.globalData.system_info.windowHeight
+var canvasWidth = deviceWidth;
+var canvasHeight = 0.88 * deviceHeight;
 var radio = deviceWidth / 375 * 0.5; //相对于iPhone 屏幕宽度的比例
-var size = { width: 1 * deviceWidth / radio, height: 1 * deviceWidth / radio };
+var size = { width: canvasWidth / radio, height: canvasHeight / radio };
 var contentItem = []
 var imageUrls = []
 var toucheAction
@@ -22,15 +24,15 @@ import data from "../../../data/data.js"
 
 Page(Object.assign({}, Zan.Toast, {
     data: {
-        
+
         showDialog: false,
-        avatarCanvasWidth: 1 * deviceWidth,
-        avatarCanvasHeight:0.9 * deviceWidth,
+        avatarCanvasWidth: canvasWidth,
+        avatarCanvasHeight: canvasHeight,
         // urls:iconCat,
         backgroundSrc: '',
         isClip: !true,
         showAvatars: !false,
-        isCircle: false,
+        // isCircle: false,
         animationData: {},
         deskSelect:"",
         // cropperOpt: {
@@ -48,9 +50,7 @@ Page(Object.assign({}, Zan.Toast, {
         // },
         trangleUp: 0,
         avatarBoxChild: false,
-        backgroundImages: "",
-        urls: ['http://icons.maiyizhi.cn/nvshengjie_feng.jpg', 'http://icons.maiyizhi.cn/nvshengjie_feng.jpg', 'http://icons.maiyizhi.cn/nvshengjie_feng.jpg', 'http://icons.maiyizhi.cn/nvshengjie_feng.jpg', 'http://icons.maiyizhi.cn/nvshengjie_feng.jpg'],
-        iconList: ['/styles/mingxin1.png', '/styles/mingxin2.png', '/styles/mingxin3.png']
+        // backgroundImages: "",
     },
     onShareAppMessage: function() {
         console.log(this.data)
@@ -137,7 +137,7 @@ Page(Object.assign({}, Zan.Toast, {
           backgroundSrc: desk1,
           deskSelect:0
         })
-        
+
         if (imageUrls.length) {
             imageUrls[imageUrls.length - 1] = desk1;
         } else {
@@ -238,15 +238,15 @@ Page(Object.assign({}, Zan.Toast, {
         })
 
     },
-    chooseBackground: function(event) {
-        const src = event.currentTarget.dataset.src;
-        this.setData({
-            backgroundImages: src,
-            avatarHidden: true,
-
-        })
-        this.bgAnimation(-25)
-    },
+    // chooseBackground: function(event) {
+    //     const src = event.currentTarget.dataset.src;
+    //     this.setData({
+    //         backgroundImages: src,
+    //         avatarHidden: true,
+    //
+    //     })
+    //     this.bgAnimation(-25)
+    // },
 
 
     onUnload: function() {
@@ -334,10 +334,10 @@ Page(Object.assign({}, Zan.Toast, {
             success: function(res) {
                 let item = {
                     type: "image",
-                    dx: 0.9 * deviceWidth,
-                    dy: 0.9 * deviceWidth,
-                    width: 500,
-                    height: res.height / res.width * 500,
+                    dx: canvasWidth,
+                    dy: canvasHeight,
+                    width: res.width,
+                    height: res.height,
                     value: event.currentTarget.dataset.avatarpath,
                     cancel: 1,
                     isShowSymbol: true,
@@ -380,7 +380,7 @@ Page(Object.assign({}, Zan.Toast, {
         toucheAction.touchStart(event);
     },
 
- 
+
 
     changeBackground: function() {
         this.setData({
@@ -396,18 +396,20 @@ Page(Object.assign({}, Zan.Toast, {
             contentItem[index].isShowSymbol = false;
         })
 
-        if (!this.data.isCircle) {
-            toucheAction.drawElements({ rectangle: true, src: that.data.backgroundSrc });
-        } else if (this.data.isCircle) {
-            toucheAction.drawElements({
-                circle: {
-                    x: 0.5 * deviceWidth * 0.9,
-                    y: 0.5 * deviceWidth * 0.9,
-                    R: 0.5 * deviceWidth * 0.9
-                },
-                src: that.data.backgroundSrc
-            });
-        }
+        toucheAction.drawElements({ rectangle: true, src: that.data.backgroundSrc });
+
+        // if (!this.data.isCircle) {
+        //     toucheAction.drawElements({ rectangle: true, src: that.data.backgroundSrc });
+        // } else if (this.data.isCircle) {
+        //     toucheAction.drawElements({
+        //         circle: {
+        //             x: 0.5 * deviceWidth * 0.9,
+        //             y: 0.5 * deviceWidth * 0.9,
+        //             R: 0.5 * deviceWidth * 0.9
+        //         },
+        //         src: that.data.backgroundSrc
+        //     });
+        // }
 
         setTimeout(function() {
             wx.canvasToTempFilePath({
@@ -472,10 +474,10 @@ Page(Object.assign({}, Zan.Toast, {
                                 wx.hideToast();
                                 let item = {
                                     type: "image",
-                                    dx: 0.9 * deviceWidth,
-                                    dy: 0.9 * deviceWidth,
-                                    width: 500,
-                                    height: result.height / result.width * 500,
+                                    dx: canvasWidth,
+                                    dy: canvasHeight,
+                                    width: result.width,
+                                    height: result.height,
                                     value: res.tempFilePath,
                                     cancel: 1,
                                     isShowSymbol: true,

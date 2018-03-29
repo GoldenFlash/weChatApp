@@ -78,50 +78,58 @@ Page(Object.assign({}, Zan.Toast, {
 concact(){
   console.log(12312312)
   var that =this;
-    
+
 
     var deskurl = this.data.pic_url;
     console.log("deskUrl",deskurl)
     // var share = this.data.tempFilePath
-    var image = '../../images/WechatIMG103.jpeg' 
-     const ctx = wx.createCanvasContext('demo');
-      ctx.drawImage(deskurl, 0,deviceHeight*0.15,deviceWidth, deviceHeight*0.5);
-      ctx.drawImage(image, 0,deviceHeight*0.65,deviceWidth, deviceHeight*0.12);
-      // ctx.drawImage(image, width*0.8,height*0.85,width*0.2, width*0.2);
-      // ctx.drawImage()
-      ctx.draw('',res => {
-        wx.canvasToTempFilePath({
-          destWidth:deviceWidth,
-          destHeight:deviceHeight,
-          canvasId: 'demo',
-          success: function(res) {
-            console.log("tempFilePath",res.tempFilePath)
+    var image = '../../images/WechatIMG103.jpeg'
 
-            that.setData({
-              
-              canvasHidden:true,
-              url: res.tempFilePath,
-            })
-            // setTimeout(()=>{
-            //   that.setData({
-            //     isShow:false,
-            //   });
-            //   wx.hideLoading();
-              
-            // },500)
-          
-          },
-          error: function (res) {
-            console.log(res)
-          }
-        })
-      });
+    wx.getImageInfo({
+      src: deskurl,
+      success: function (res) {
+        console.log("width",res.width)
+        console.log("height",res.height)
+        const ctx = wx.createCanvasContext('demo');
+        const imageHeight = res.height/res.width*deviceWidth;
+        ctx.drawImage(deskurl, 0,0,deviceWidth, imageHeight);
+        ctx.drawImage(image, 0,imageHeight,deviceWidth, deviceHeight*0.12);
+        // ctx.drawImage(image, width*0.8,height*0.85,width*0.2, width*0.2);
+        // ctx.drawImage()
+        ctx.draw('',res => {
+          wx.canvasToTempFilePath({
+            destWidth:deviceWidth,
+            destHeight:deviceHeight,
+            canvasId: 'demo',
+            success: function(res) {
+              console.log("tempFilePath",res.tempFilePath)
 
+              that.setData({
+
+                canvasHidden:true,
+                pic_url: res.tempFilePath,
+              })
+              // setTimeout(()=>{
+              //   that.setData({
+              //     isShow:false,
+              //   });
+              //   wx.hideLoading();
+
+              // },500)
+
+            },
+            error: function (res) {
+              console.log(res)
+            }
+          })
+        });
+      }
+    })
 },
 
 drawShare(){
   var that = this;
-  
+
     const ctx = wx.createCanvasContext('share')
     console.log("width",width)
     ctx.setFontSize(18)
@@ -148,7 +156,7 @@ drawShare(){
         },
         fail(){
           console.log("fail")
-        } 
+        }
       })
 },
 
@@ -182,10 +190,10 @@ drawShare(){
         })
         // that.drawShare()
         that.concact();
-        
+
       }
     })
-    
+
 
   }
 
